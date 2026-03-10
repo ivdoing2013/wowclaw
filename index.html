@@ -937,6 +937,7 @@
             </div>
             <div class="nav-links">
                 <a href="#features">功能特性</a>
+                <a href="#news">最新资讯</a>
                 <a href="#mobile">移动办公</a>
                 <a href="#cases">应用场景</a>
                 <a href="#docs">开发文档</a>
@@ -1298,6 +1299,66 @@
                     <div class="case-icon">🌐</div>
                     <div class="case-name">网页抓取</div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 最新资讯 -->
+    <section class="news-section" id="news" style="padding: 100px 24px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto;">
+            <div class="section-header" style="text-align: center; margin-bottom: 60px;">
+                <div style="display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, #22c55e, #16a34a); padding: 12px 28px; border-radius: 50px; font-weight: 700; font-size: 16px; margin-bottom: 24px;">
+                    <span>📰</span> 每日更新
+                </div>
+                <h2 class="section-title" style="font-size: 42px; font-weight: 800; margin-bottom: 16px; color: #fff;">最新资讯</h2>
+                <p class="section-subtitle" style="font-size: 18px; color: #94a3b8;">OpenClaw 生态最新动态、热门项目、技术趋势</p>
+            </div>
+            
+            <!-- 资讯卡片 -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; margin-bottom: 48px;">
+                <!-- 热门项目 1 -->
+                <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 32px; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-8px)';this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.transform='translateY(0)';this.style.background='rgba(255,255,255,0.05)'">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                        <span style="font-size: 32px;">⭐</span>
+                        <span style="background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #000; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700;">HOT</span>
+                    </div>
+                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #fff;">karpathy/autoresearch</h3>
+                    <p style="color: #94a3b8; line-height: 1.7; margin-bottom: 16px;">AI agents 自动在单 GPU 上运行 nanochat 训练研究，Star 数飙升至 16,047！</p>
+                    <div style="display: flex; align-items: center; gap: 16px; color: #64748b; font-size: 14px;">
+                        <span>⭐ 16,047</span>
+                        <span>🍴 2,044</span>
+                        <span>💻 Python</span>
+                    </div>
+                </div>
+
+                <!-- 热门项目 2 -->
+                <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 32px; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-8px)';this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.transform='translateY(0)';this.style.background='rgba(255,255,255,0.05)'">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                        <span style="font-size: 32px;">🎯</span>
+                        <span style="background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700;">NEW</span>
+                    </div>
+                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #fff;">datawhalechina/hello-claw</h3>
+                    <p style="color: #94a3b8; line-height: 1.7; margin-bottom: 16px;">首个体系化 OpenClaw 中文开源教程！从零基础领养、构建你的第一只龙虾 🦞</p>
+                    <a href="https://github.com/datawhalechina/hello-claw" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #6366f1; text-decoration: none; font-weight: 600;">查看教程 →</a>
+                </div>
+
+                <!-- 热门项目 3 -->
+                <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 32px; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-8px)';this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.transform='translateY(0)';this.style.background='rgba(255,255,255,0.05)'">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                        <span style="font-size: 32px;">🔥</span>
+                        <span style="background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700;">TREND</span>
+                    </div>
+                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #fff;">AI Agent 工具爆发</h3>
+                    <p style="color: #94a3b8; line-height: 1.7; margin-bottom: 16px;">CLI-Anything、Claude-to-IM-skill 等工具让 AI 编程助手更强大，支持 Telegram、Discord、飞书接入。</p>
+                    <div style="color: #64748b; font-size: 14px;">📅 2026-03-10</div>
+                </div>
+            </div>
+
+            <!-- 查看更多 -->
+            <div style="text-align: center;">
+                <a href="https://github.com/trending" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); color: white; padding: 14px 32px; border-radius: 10px; text-decoration: none; font-weight: 600; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
+                    查看更多 GitHub 趋势 →
+                </a>
             </div>
         </div>
     </section>
