@@ -1,0 +1,48 @@
+name: Daily Briefing
+
+on:
+  schedule:
+    # 每天早上8点运行 (北京时间 UTC+8)
+    - cron: '0 0 * * *'
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  send-briefing:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        pip install requests
+        
+    - name: Generate and send briefing
+      env:
+        # 飞书机器人配置（需要在 GitHub Secrets 中设置）
+        FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
+        FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+        FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+        BITABLE_APP_TOKEN: ${{ secrets.BITABLE_APP_TOKEN }}
+        BITABLE_TABLE_ID: ${{ secrets.BITABLE_TABLE_ID }}
+      run: |
+        python scripts/daily_briefing.py
+        
+    - name: Notify on failure
+      if: failure()
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: '❌ 每日简报发送失败 - ' + new Date().toISOString().split('T')[0],
+            body: '请检查 GitHub Actions 日志',
+            labels: ['bug', 'daily-briefing']
+          })
