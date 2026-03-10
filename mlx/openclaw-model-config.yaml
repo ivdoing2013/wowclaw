@@ -1,0 +1,18 @@
+# OpenClaw 本地模型配置
+# 将此配置添加到 ~/.openclawcn/config.yaml
+
+models:
+  # 本地千问2.5 模型 (MLX)
+  - id: local-qwen
+    name: "本地千问2.5 (MLX)"
+    provider: openai
+    api_base: http://127.0.0.1:8080/v1
+    api_key: mlx-local
+    model: mlx-community/Qwen2.5-7B-Instruct-MLX
+    max_tokens: 4096
+    temperature: 0.7
+    thinking: "high"
+    description: "本地运行的千问2.5-7B模型，5秒极速响应，完全离线"
+
+# 可选：设置为默认模型
+# default_model: local-qwen

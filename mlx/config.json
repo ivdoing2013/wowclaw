@@ -1,0 +1,26 @@
+{
+  "name": "MLX Server - Qwen2.5",
+  "description": "本地 MLX Server 运行 Qwen2.5-7B-Instruct 模型",
+  "api_endpoint": "http://127.0.0.1:8080/v1/chat/completions",
+  "api_key": "mlx-local",
+  "model": "mlx-community/Qwen2.5-7B-Instruct-MLX",
+  "max_tokens": 4096,
+  "temperature": 0.7,
+  "supported_features": [
+    "chat",
+    "streaming",
+    "function_calling"
+  ],
+  "setup_instructions": [
+    "1. 运行 ./start_mlx_server.sh 启动服务器",
+    "2. 首次启动会自动下载模型（约 15GB）",
+    "3. 等待 'Serving on http://127.0.0.1:8080' 出现",
+    "4. 在 OpenClaw 中添加此配置"
+  ],
+  "requirements": {
+    "macOS": "12.0+",
+    "RAM": "16GB+",
+    "Storage": "20GB+ 可用空间",
+    "Python": "3.9+"
+  }
+}
