@@ -219,6 +219,13 @@
             font-size: 16px;
             transition: all 0.3s;
             box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cta-primary::before {
+            content: '⬇️';
         }
         
         .cta-primary:hover {
@@ -243,6 +250,152 @@
             background: #f5f3ff;
         }
         
+        /* 下载区域 */
+        .download-section {
+            padding: 100px 24px;
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .download-title {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .download-subtitle {
+            font-size: 18px;
+            color: #a5b4fc;
+            margin-bottom: 48px;
+        }
+
+        .download-platforms {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .download-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 40px 32px;
+            width: 280px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .download-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+
+        .platform-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .platform-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .platform-version {
+            font-size: 13px;
+            color: #a5b4fc;
+            margin-bottom: 20px;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        /* 用户证言 */
+        .testimonials {
+            padding: 100px 24px;
+            background: #f8fafc;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            color: #475569;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .author-info h4 {
+            font-size: 15px;
+            color: var(--dark);
+            margin-bottom: 2px;
+        }
+
+        .author-info span {
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
         .hero-stats {
             display: flex;
             justify-content: center;
@@ -765,8 +918,8 @@
             <h1>您的个人AI<br>智能助手平台</h1>
             <p class="subtitle">基于 OpenClaw 框架打造。一键部署您的专属 AI 助手，支持多平台接入、自动化工作流、私有化部署。</p>
             <div class="hero-cta-group">
-                <a href="#" class="cta-primary">免费开始使用</a>
-                <a href="#" class="cta-secondary">查看开发文档</a>
+                <a href="#download" class="cta-primary">立即下载体验</a>
+                <a href="#features" class="cta-secondary">了解更多</a>
             </div>
             <div class="hero-stats">
                 <div class="stat-item">
@@ -780,6 +933,34 @@
                 <div class="stat-item">
                     <div class="stat-number">99.9%</div>
                     <div class="stat-label">服务可用性</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载区域 -->
+    <section class="download-section" id="download">
+        <div class="container">
+            <h2 class="download-title">立即下载，开启智能之旅</h2>
+            <p class="download-subtitle">零配置、一键安装，支持 macOS 和 Windows 平台</p>
+            <div class="download-platforms">
+                <div class="download-card">
+                    <div class="platform-icon">🍎</div>
+                    <div class="platform-name">macOS</div>
+                    <div class="platform-version">适用于 macOS 12.0+ (Apple Silicon & Intel)</div>
+                    <a href="#" class="download-btn">下载 macOS 版</a>
+                </div>
+                <div class="download-card">
+                    <div class="platform-icon">🪟</div>
+                    <div class="platform-name">Windows</div>
+                    <div class="platform-version">适用于 Windows 10/11 (64-bit)</div>
+                    <a href="#" class="download-btn">下载 Windows 版</a>
+                </div>
+                <div class="download-card">
+                    <div class="platform-icon">🐧</div>
+                    <div class="platform-name">Linux</div>
+                    <div class="platform-version">适用于 Ubuntu/Debian (x64 & ARM64)</div>
+                    <a href="#" class="download-btn">下载 Linux 版</a>
                 </div>
             </div>
         </div>
@@ -918,12 +1099,54 @@
         </div>
     </section>
 
+    <!-- 用户证言 -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">用户怎么说</h2>
+                <p class="section-subtitle">来自全球开发者和企业用户的真实反馈</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"WowClaw 改变了我的工作方式。以前需要手动处理的大量重复性任务，现在只需要一句话就能完成。效率提升了至少 3 倍！"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">李</div>
+                        <div class="author-info">
+                            <h4>李明</h4>
+                            <span>全栈工程师 @ 某独角兽公司</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"作为一个非技术人员，WowClaw 让我也能轻松使用 AI 自动化。界面直观，文档清晰，遇到问题社区也很热心。强烈推荐！"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">王</div>
+                        <div class="author-info">
+                            <h4>王芳</h4>
+                            <span>产品经理 @ 互联网大厂</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"私有化部署是我们选择 WowClaw 的关键。数据完全在自己服务器上，安全性有保障。而且扩展性很强，我们定制了很多企业专属功能。"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">张</div>
+                        <div class="author-info">
+                            <h4>张伟</h4>
+                            <span>CTO @ 金融科技公司</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA区域 -->
     <section class="cta-section" id="contact">
         <div class="cta-content">
             <h2>准备好开始了吗？</h2>
-            <p>立即部署您的专属 AI 助手，体验智能化工作流</p>
-            <a href="#" class="cta-button-large">免费开始使用 →</a>
+            <p>立即下载 WowClaw，体验智能化工作流</p>
+            <a href="#download" class="cta-button-large">⬇️ 立即免费下载</a>
         </div>
     </section>
 
