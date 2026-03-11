@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WowOclaw | 您的个人AI智能助手平台</title>
-    <link rel="icon" type="image/jpeg" href="logo.jpg">
-    <link rel="apple-touch-icon" href="logo.jpg">
+    <title>WodeClaw | AI智能体平台 · 数字员工 · 自动化工作流</title>
     <style>
         * {
             margin: 0;
@@ -14,19 +12,43 @@
         }
         
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #8b5cf6;
-            --accent: #06b6d4;
-            --dark: #1e1b4b;
-            --light: #f8fafc;
+            --primary: #8b5cf6;
+            --primary-glow: #a78bfa;
+            --secondary: #06b6d4;
+            --accent: #f59e0b;
+            --dark: #0f0c29;
+            --dark-secondary: #302b63;
+            --dark-tertiary: #24243e;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255,255,255,0.7);
+            --text-muted: rgba(255,255,255,0.5);
+            --glass: rgba(255,255,255,0.05);
+            --glass-border: rgba(255,255,255,0.1);
         }
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
             line-height: 1.6;
-            color: #334155;
-            background: #fff;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* 星空背景动画 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(245, 158, 11, 0.08) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: 0;
         }
         
         /* 导航栏 */
@@ -35,10 +57,10 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(255,255,255,0.95);
+            background: rgba(15, 12, 41, 0.8);
             backdrop-filter: blur(20px);
             z-index: 1000;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid var(--glass-border);
             transition: all 0.3s;
         }
         
@@ -57,9 +79,10 @@
             gap: 12px;
             font-size: 24px;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .logo-icon {
@@ -72,6 +95,7 @@
             justify-content: center;
             font-size: 20px;
             -webkit-text-fill-color: white;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
         }
         
         .nav-links {
@@ -82,7 +106,7 @@
         
         .nav-links a {
             text-decoration: none;
-            color: #64748b;
+            color: var(--text-secondary);
             font-size: 15px;
             font-weight: 500;
             transition: color 0.3s;
@@ -90,7 +114,7 @@
         }
         
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--text-primary);
         }
         
         .nav-links a::after {
@@ -100,7 +124,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--primary);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             transition: width 0.3s;
         }
         
@@ -109,35 +133,29 @@
         }
         
         .nav-cta {
-            background: #000000;
-            color: #fbbf24;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
             padding: 10px 24px;
             border-radius: 8px;
             text-decoration: none;
             font-size: 14px;
-            font-weight: 800;
+            font-weight: 600;
             transition: all 0.3s;
-            border: 2px solid #fbbf24;
-            box-shadow: 0 0 15px rgba(251, 191, 36, 0.5), inset 0 0 10px rgba(251, 191, 36, 0.1);
-            text-shadow: 0 0 10px rgba(251, 191, 36, 0.8);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
         }
-
+        
         .nav-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.6), 0 0 20px rgba(251, 191, 36, 0.4);
-            color: #dc2626;
-            background: #fbbf24;
-            border-color: #fbbf24;
-            text-shadow: none;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
         }
         
         /* Hero区域 */
         .hero {
             padding: 160px 24px 120px;
             text-align: center;
-            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 50%, #c7d2fe 100%);
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
         
         .hero::before {
@@ -147,7 +165,7 @@
             right: -20%;
             width: 800px;
             height: 800px;
-            background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%);
             animation: float 6s ease-in-out infinite;
         }
         
@@ -158,7 +176,7 @@
             left: -10%;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(6,182,212,0.15) 0%, transparent 70%);
             animation: float 8s ease-in-out infinite reverse;
         }
         
@@ -178,33 +196,36 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: white;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
             padding: 8px 20px;
             border-radius: 50px;
             font-size: 14px;
-            color: var(--primary);
+            color: var(--primary-glow);
             font-weight: 600;
             margin-bottom: 32px;
-            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.15);
+            backdrop-filter: blur(10px);
         }
         
         .hero-badge::before {
-            content: '🔥';
+            content: '✨';
         }
         
         .hero h1 {
             font-size: 64px;
             font-weight: 800;
             margin-bottom: 24px;
-            background: linear-gradient(135deg, var(--dark), var(--primary));
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4, #f59e0b);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
             line-height: 1.1;
+            filter: drop-shadow(0 0 30px rgba(139,92,246,0.3));
         }
         
         .hero .subtitle {
             font-size: 22px;
-            color: #64748b;
+            color: var(--text-secondary);
             margin-bottom: 40px;
             max-width: 600px;
             margin-left: auto;
@@ -218,220 +239,44 @@
             margin-bottom: 48px;
         }
         
-        .hero-cta-group {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-bottom: 48px;
-            flex-wrap: wrap;
-        }
-
         .cta-primary {
-            background: linear-gradient(135deg, #fbbf24, #f59e0b);
-            color: #1e1b4b;
-            padding: 20px 48px;
-            border-radius: 14px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 16px 40px;
+            border-radius: 12px;
             text-decoration: none;
-            font-weight: 800;
-            font-size: 18px;
+            font-weight: 700;
+            font-size: 16px;
             transition: all 0.3s;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(251, 191, 36, 0.6), inset 0 1px 0 rgba(255,255,255,0.4);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            border: 2px solid rgba(255,255,255,0.4);
-            text-shadow: 0 1px 2px rgba(255,255,255,0.3);
-            letter-spacing: 0.5px;
-        }
-
-        .cta-primary::before {
-            content: '⬇️';
-            font-size: 20px;
-            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+            border: none;
+            cursor: pointer;
         }
         
         .cta-primary:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 60px rgba(251, 191, 36, 0.8), inset 0 1px 0 rgba(255,255,255,0.5);
-            border-color: rgba(255,255,255,0.6);
-            background: linear-gradient(135deg, #fbbf24, #fbbf24);
-        }
-
-        .cta-primary:active {
-            transform: translateY(-2px) scale(0.98);
+            transform: translateY(-3px);
+            box-shadow: 0 0 50px rgba(139, 92, 246, 0.7);
         }
         
         .cta-secondary {
-            background: rgba(255, 255, 255, 0.95);
-            color: var(--primary);
-            padding: 20px 48px;
-            border-radius: 14px;
+            background: var(--glass);
+            color: var(--text-primary);
+            padding: 16px 40px;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 18px;
-            border: 2px solid var(--primary);
+            font-size: 16px;
+            border: 1px solid var(--glass-border);
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-            letter-spacing: 0.5px;
+            backdrop-filter: blur(10px);
         }
         
         .cta-secondary:hover {
             border-color: var(--primary);
-            background: linear-gradient(135deg, #f5f3ff, #ede9fe);
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.25);
-        }
-
-        .cta-secondary:active {
-            transform: translateY(-2px) scale(0.98);
+            background: rgba(139, 92, 246, 0.1);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
         }
         
-        /* 下载区域 */
-        .download-section {
-            padding: 100px 24px;
-            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .download-title {
-            font-size: 42px;
-            font-weight: 800;
-            margin-bottom: 16px;
-        }
-
-        .download-subtitle {
-            font-size: 18px;
-            color: #a5b4fc;
-            margin-bottom: 48px;
-        }
-
-        .download-platforms {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .download-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 20px;
-            padding: 40px 32px;
-            width: 280px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .download-card:hover {
-            transform: translateY(-8px);
-            background: rgba(255,255,255,0.15);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
-        }
-
-        .platform-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        .platform-name {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .platform-version {
-            font-size: 13px;
-            color: #a5b4fc;
-            margin-bottom: 20px;
-        }
-
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            color: white;
-            padding: 14px 28px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
-
-        .download-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
-        }
-
-        /* 用户证言 */
-        .testimonials {
-            padding: 100px 24px;
-            background: #f8fafc;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 24px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .testimonial-card {
-            background: white;
-            padding: 32px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            transition: all 0.3s;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-
-        .testimonial-text {
-            font-size: 16px;
-            color: #475569;
-            line-height: 1.7;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .author-avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-        }
-
-        .author-info h4 {
-            font-size: 15px;
-            color: var(--dark);
-            margin-bottom: 2px;
-        }
-
-        .author-info span {
-            font-size: 13px;
-            color: #94a3b8;
-        }
-
         .hero-stats {
             display: flex;
             justify-content: center;
@@ -449,18 +294,20 @@
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .stat-label {
             font-size: 14px;
-            color: #64748b;
+            color: var(--text-muted);
             margin-top: 4px;
         }
         
         /* 三大特色 */
         .features {
             padding: 120px 24px;
-            background: white;
+            position: relative;
+            z-index: 1;
         }
         
         .container {
@@ -475,25 +322,27 @@
         
         .section-tag {
             display: inline-block;
-            background: #f5f3ff;
-            color: var(--primary);
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: var(--primary-glow);
             padding: 8px 20px;
             border-radius: 50px;
             font-size: 14px;
             font-weight: 600;
             margin-bottom: 16px;
+            backdrop-filter: blur(10px);
         }
         
         .section-title {
             font-size: 48px;
             font-weight: 800;
-            color: var(--dark);
+            color: var(--text-primary);
             margin-bottom: 16px;
         }
         
         .section-desc {
             font-size: 18px;
-            color: #64748b;
+            color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
         }
@@ -505,14 +354,15 @@
         }
         
         .feature-card {
-            background: white;
+            background: var(--glass);
             border-radius: 24px;
             padding: 48px 32px;
             text-align: center;
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--glass-border);
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
         }
         
         .feature-card::before {
@@ -529,8 +379,8 @@
         
         .feature-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
-            border-color: transparent;
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2);
         }
         
         .feature-card:hover::before {
@@ -548,17 +398,18 @@
             font-size: 36px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
         }
         
         .feature-card h3 {
             font-size: 24px;
             font-weight: 700;
-            color: var(--dark);
+            color: var(--text-primary);
             margin-bottom: 16px;
         }
         
         .feature-card p {
-            color: #64748b;
+            color: var(--text-secondary);
             font-size: 16px;
             line-height: 1.7;
         }
@@ -566,7 +417,9 @@
         /* 移动协同 */
         .mobile-section {
             padding: 120px 24px;
-            background: linear-gradient(135deg, #f8fafc, #e0e7ff);
+            background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(6,182,212,0.1));
+            position: relative;
+            z-index: 1;
         }
         
         .mobile-grid {
@@ -579,14 +432,14 @@
         .mobile-content h2 {
             font-size: 42px;
             font-weight: 800;
-            color: var(--dark);
+            color: var(--text-primary);
             margin-bottom: 24px;
             line-height: 1.2;
         }
         
         .mobile-content > p {
             font-size: 18px;
-            color: #64748b;
+            color: var(--text-secondary);
             margin-bottom: 32px;
             line-height: 1.7;
         }
@@ -615,18 +468,19 @@
             font-size: 14px;
             flex-shrink: 0;
             margin-top: 2px;
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
         }
         
         .feature-text h4 {
             font-size: 16px;
             font-weight: 700;
-            color: var(--dark);
+            color: var(--text-primary);
             margin-bottom: 4px;
         }
         
         .feature-text p {
             font-size: 14px;
-            color: #64748b;
+            color: var(--text-muted);
         }
         
         .mobile-visual {
@@ -636,12 +490,13 @@
         .phone-mockup {
             width: 320px;
             height: 640px;
-            background: linear-gradient(135deg, var(--dark), #312e81);
+            background: linear-gradient(135deg, var(--dark-secondary), var(--dark-tertiary));
             border-radius: 48px;
             margin: 0 auto;
             padding: 20px;
-            box-shadow: 0 50px 100px rgba(30, 27, 75, 0.3);
+            box-shadow: 0 50px 100px rgba(0,0,0,0.5), 0 0 50px rgba(139, 92, 246, 0.2);
             position: relative;
+            border: 1px solid var(--glass-border);
         }
         
         .phone-screen {
@@ -678,7 +533,8 @@
         /* 应用场景 */
         .use-cases {
             padding: 120px 24px;
-            background: white;
+            position: relative;
+            z-index: 1;
         }
         
         .cases-grid {
@@ -689,19 +545,20 @@
         }
         
         .case-item {
-            background: #f8fafc;
+            background: var(--glass);
             border-radius: 16px;
             padding: 32px 20px;
             text-align: center;
             transition: all 0.3s;
-            border: 1px solid transparent;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
         }
         
         .case-item:hover {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
+            background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(6,182,212,0.2));
             transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.3);
         }
         
         .case-icon {
@@ -712,16 +569,17 @@
         .case-name {
             font-size: 14px;
             font-weight: 600;
+            color: var(--text-primary);
         }
         
         /* CTA区域 */
         .cta-section {
             padding: 120px 24px;
-            background: linear-gradient(135deg, var(--dark), #312e81);
+            background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(6,182,212,0.2));
             text-align: center;
-            color: white;
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
         
         .cta-section::before {
@@ -745,36 +603,39 @@
             font-size: 48px;
             font-weight: 800;
             margin-bottom: 24px;
+            color: var(--text-primary);
         }
         
         .cta-section p {
             font-size: 20px;
-            opacity: 0.9;
+            color: var(--text-secondary);
             margin-bottom: 40px;
         }
         
         .cta-button-large {
             display: inline-block;
-            background: white;
-            color: var(--dark);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
             padding: 20px 48px;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 700;
             font-size: 18px;
             transition: all 0.3s;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
         }
         
         .cta-button-large:hover {
             transform: translateY(-3px);
-            box-shadow: 0 20px 50px rgba(255,255,255,0.3);
+            box-shadow: 0 0 50px rgba(139, 92, 246, 0.7);
         }
         
         /* Footer */
         .footer {
             padding: 80px 24px 40px;
-            background: #0f172a;
-            color: #94a3b8;
+            background: rgba(15, 12, 41, 0.9);
+            color: var(--text-muted);
+            border-top: 1px solid var(--glass-border);
         }
         
         .footer-grid {
@@ -792,7 +653,7 @@
             gap: 12px;
             font-size: 24px;
             font-weight: 800;
-            color: white;
+            color: var(--text-primary);
             margin-bottom: 20px;
         }
         
@@ -804,6 +665,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
         }
         
         .footer-desc {
@@ -820,7 +682,8 @@
         .social-icon {
             width: 40px;
             height: 40px;
-            background: rgba(255,255,255,0.1);
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -833,10 +696,11 @@
         .social-icon:hover {
             background: var(--primary);
             color: white;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
         }
         
         .footer-column h4 {
-            color: white;
+            color: var(--text-primary);
             font-size: 16px;
             font-weight: 700;
             margin-bottom: 24px;
@@ -851,21 +715,21 @@
         }
         
         .footer-column a {
-            color: #94a3b8;
+            color: var(--text-muted);
             text-decoration: none;
             font-size: 14px;
             transition: color 0.3s;
         }
         
         .footer-column a:hover {
-            color: white;
+            color: var(--text-primary);
         }
         
         .footer-bottom {
             max-width: 1280px;
             margin: 0 auto;
             padding-top: 40px;
-            border-top: 1px solid #1e293b;
+            border-top: 1px solid var(--glass-border);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -934,13 +798,12 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <img src="logo.jpg" alt="WowOclaw Logo" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;">
-                <span style="font-size: 24px; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">WowOclaw</span>
+                <div class="logo-icon">🦅</div>
+                WodeClaw
             </div>
             <div class="nav-links">
-                <a href="#features">功能特性</a>
-                <a href="updates.html">最新资讯</a>
-                <a href="#mobile">移动办公</a>
+                <a href="#features">AI能力</a>
+                <a href="#mobile">数字员工</a>
                 <a href="#cases">应用场景</a>
                 <a href="#docs">开发文档</a>
                 <a href="#contact" class="nav-cta">立即开始</a>
@@ -951,22 +814,21 @@
     <!-- Hero区域 -->
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-badge">🚀 全新发布 v2.0</div>
-            <h1>您的个人AI<br>智能助手平台</h1>
-            <p class="subtitle">基于 OpenClaw 框架打造。一键部署您的专属 AI 助手，支持多平台接入、自动化工作流、私有化部署。</p>
+            <div class="hero-badge">✨ 基于 OpenClaw 框架</div>
+            <h1>AI智能体平台<br>数字员工 · 自动化工作流</h1>
+            <p class="subtitle">一键部署您的专属 AI 数字员工。支持多平台接入、自动化工作流、私有化部署。让重复性工作自动化，让人回归创造性工作。</p>
             <div class="hero-cta-group">
-                <a href="https://pan.baidu.com/s/1ewtCx2KEPeIz6nBzT9Q-jQ?pwd=5qpq" target="_blank" class="cta-primary">🍎 下载 Mac 版</a>
-                <a href="https://pan.baidu.com/s/16aZ_OKzP63Y0D0Tiayehqg?pwd=833f" target="_blank" class="cta-primary" style="background: linear-gradient(135deg, #06b6d4, #0891b2); color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.3);">🪟 下载 Windows 版</a>
-                <a href="#clawdbot" class="cta-secondary">了解更多</a>
+                <a href="#" class="cta-primary">免费开始使用 →</a>
+                <a href="#" class="cta-secondary">查看开发文档</a>
             </div>
             <div class="hero-stats">
                 <div class="stat-item">
-                    <div class="stat-number">10K+</div>
-                    <div class="stat-label">活跃用户</div>
+                    <div class="stat-number">40+</div>
+                    <div class="stat-label">AI模型集成</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">50+</div>
-                    <div class="stat-label">内置工具</div>
+                    <div class="stat-label">开箱即用技能</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">99.9%</div>
@@ -976,220 +838,24 @@
         </div>
     </section>
 
-    <!-- 下载区域 -->
-    <section class="download-section" id="download">
-        <div class="container">
-            <h2 class="download-title">立即下载，开启智能之旅</h2>
-            <p class="download-subtitle">零配置、一键安装，支持 macOS 和 Windows 平台</p>
-            <div class="download-platforms">
-                <div class="download-card">
-                    <div class="platform-icon">🍎</div>
-                    <div class="platform-name">macOS</div>
-                    <div class="platform-version">适用于 macOS 12.0+ (Apple Silicon & Intel)</div>
-                    <a href="https://pan.baidu.com/s/1ewtCx2KEPeIz6nBzT9Q-jQ?pwd=5qpq" target="_blank" class="download-btn">下载 macOS 版</a>
-                </div>
-                <div class="download-card">
-                    <div class="platform-icon">🪟</div>
-                    <div class="platform-name">Windows</div>
-                    <div class="platform-version">适用于 Windows 10/11 (64-bit)</div>
-                    <a href="https://pan.baidu.com/s/16aZ_OKzP63Y0D0Tiayehqg?pwd=833f" target="_blank" class="download-btn">下载 Windows 版</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- WowOclawdCN 产品详情 -->
-    <section class="clawdbot-section" id="clawdbot" style="padding: 100px 24px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white;">
-        <div class="container" style="max-width: 1200px; margin: 0 auto;">
-            <!-- 产品主标题 -->
-            <div style="text-align: center; margin-bottom: 80px;">
-                <div style="display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, #6366f1, #8b5cf6); padding: 12px 28px; border-radius: 50px; font-weight: 700; font-size: 16px; margin-bottom: 24px;">
-                    <span>🦞</span> WowOclawdCN 正式版已上线
-                </div>
-                <h2 style="font-size: 48px; font-weight: 800; margin-bottom: 20px; background: linear-gradient(135deg, #fff, #a5b4fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">深度适配中国用户的 AI 智能体</h2>
-                <p style="font-size: 20px; color: #94a3b8; max-width: 700px; margin: 0 auto; line-height: 1.6;">厌倦了 OpenClaw 的繁琐安装、水土不服和频繁报错？<br>WowOclawdCN 来了！我们并非简单的汉化，而是针对中国用户的痛点，对 OpenClaw 进行了<strong style="color: #6366f1;">深度重构与国产化改造</strong>。</p>
-            </div>
-
-            <!-- 五大核心优势 -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; margin-bottom: 80px;">
-                <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 32px; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-8px)';this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.transform='translateY(0)';this.style.background='rgba(255,255,255,0.05)'">
-                    <div style="font-size: 40px; margin-bottom: 16px;">✨</div>
-                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #fff;">【小白福音】3分钟极简安装</h3>
-                    <p style="color: #94a3b8; line-height: 1.7; margin: 0;">告别一天的黑窗编译。我们提供<strong style="color: #22c55e;">一键安装包</strong>，3分钟，从零到一，让你直接对话你的超级智能体。</p>
-                </div>
-
-                <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 32px; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-8px)';this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.transform='translateY(0)';this.style.background='rgba(255,255,255,0.05)'">
-                    <div style="font-size: 40px; margin-bottom: 16px;">🚀</div>
-                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #fff;">【国产适配】无缝接入你的工作流</h3>
-                    <p style="color: #94a3b8; line-height: 1.7; margin: 0;">完美支持 <strong style="color: #6366f1;">Kimi、豆包、Ollama</strong> 等中国大模型，并深度集成<strong style="color: #6366f1;">飞书、钉钉、企微、个人微信</strong>。让 AI 在你的地盘干活。</p>
-                </div>
-
-                <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 32px; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-8px)';this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.transform='translateY(0)';this.style.background='rgba(255,255,255,0.05)'">
-                    <div style="font-size: 40px; margin-bottom: 16px;">💪</div>
-                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #fff;">【技能怪兽】12000+ 技能，碾压式领先</h3>
-                    <p style="color: #94a3b8; line-height: 1.7; margin: 0;">内置 <strong style="color: #f59e0b;">3000+ 安全技能</strong>与<strong style="color: #f59e0b;"> 9000+ 稳定 MCP 技能</strong>，自动化办公、模拟人操作电脑、股票分析、文案生成，你想到的它都会。</p>
-                </div>
-
-                <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 32px; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-8px)';this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.transform='translateY(0)';this.style.background='rgba(255,255,255,0.05)'">
-                    <div style="font-size: 40px; margin-bottom: 16px;">🧠</div>
-                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #fff;">【生产力引擎】告别"玩票"，专注搞钱</h3>
-                    <p style="color: #94a3b8; line-height: 1.7; margin: 0;">这是一个真正能<strong style="color: #22c55e;">帮你干活、甚至帮你赚钱</strong>的生产力工具。稳定的记忆系统、智能的任务推荐，让它成为你最强的数字员工。</p>
-                </div>
-
-                <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 32px; grid-column: span 2; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-8px)';this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.transform='translateY(0)';this.style.background='rgba(255,255,255,0.05)'">
-                    <div style="display: flex; align-items: center; gap: 24px;">
-                        <div style="font-size: 48px;">🌱</div>
-                        <div>
-                            <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px; color: #fff;">【持续进化】高频迭代，永不过时</h3>
-                            <p style="color: #94a3b8; line-height: 1.7; margin: 0;">我们每天都在修复 BUG、优化体验、增加新技能。选择 WowOclawdCN，就是选择了一个<strong style="color: #6366f1;">不断进化的未来</strong>。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 下载与配置 -->
-            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 48px; margin-bottom: 48px;">
-                <h3 style="font-size: 28px; font-weight: 700; margin-bottom: 24px; display: flex; align-items: center; gap: 12px;">
-                    <span>⚙️</span> 下载与配置说明
-                </h3>
-
-                <!-- 特别提醒 -->
-                <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 12px; padding: 16px 20px; margin-bottom: 32px; display: flex; align-items: start; gap: 12px;">
-                    <span style="font-size: 20px;">⚠️</span>
-                    <p style="margin: 0; color: #fbbf24; font-size: 14px;"><strong>特别提醒：</strong>安装前请务必关闭 360 等杀毒软件（软件涉及自动化操作，易被误报，后期将申请白名单）。</p>
-                </div>
-
-                <!-- 模型推荐 -->
-                <div style="margin-bottom: 32px;">
-                    <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 16px; color: #fff;">🎯 模型选择（龙虾天生为超长上下文而生）</h4>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;">
-                        <div style="background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 12px; padding: 20px;">
-                            <div style="color: #22c55e; font-weight: 600; margin-bottom: 8px;">✅ 强力推荐</div>
-                            <p style="color: #94a3b8; margin: 0; font-size: 14px; line-height: 1.6;">Kimi 2.5-kimi coding plan<br>MiniMax 6.5 minimas coding plan<br>GLM-6</p>
-                        </div>
-                        <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 12px; padding: 20px;">
-                            <div style="color: #ef4444; font-weight: 600; margin-bottom: 8px;">❌ 拒绝弱智龙虾</div>
-                            <p style="color: #94a3b8; margin: 0; font-size: 14px; line-height: 1.6;">本地 Ollama 的低端模型<br><span style="font-size: 12px;">（会导致龙虾严重"弱智"）</span></p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 系统要求表格 -->
-                <div style="margin-bottom: 32px;">
-                    <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 16px; color: #fff;">💻 系统要求</h4>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-                        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 20px; text-align: center;">
-                            <div style="font-size: 32px; margin-bottom: 8px;">🪟</div>
-                            <div style="font-weight: 600; margin-bottom: 4px;">Windows</div>
-                            <div style="color: #94a3b8; font-size: 14px;">10/11 (64位)</div>
-                        </div>
-                        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 20px; text-align: center;">
-                            <div style="font-size: 32px; margin-bottom: 8px;">🍎</div>
-                            <div style="font-weight: 600; margin-bottom: 4px;">macOS</div>
-                            <div style="color: #94a3b8; font-size: 14px;">16+ (M系列/Intel)</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 下载按钮组 -->
-                <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-bottom: 16px;">
-                    <a href="https://pan.baidu.com/s/1ewtCx2KEPeIz6nBzT9Q-jQ?pwd=5qpq" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 16px; transition: all 0.3s;">
-                        🍎 下载 Mac 版
-                    </a>
-                    <a href="https://pan.baidu.com/s/16aZ_OKzP63Y0D0Tiayehqg?pwd=833f" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #06b6d4, #0891b2); color: white; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 16px; transition: all 0.3s;">
-                        🪟 下载 Windows 版
-                    </a>
-                    <a href="https://pan.baidu.com/s/1Mux1qPxzON-v8BSv_G7mIw?pwd=ym66" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); color: white; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 16px; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s;">
-                        📦 极客卸载工具 (彻底删除 WowOclawdCN)
-                    </a>
-                </div>
-
-                <!-- 辅助链接 -->
-                <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;">
-                    <a href="https://qcnmprsw5rpc.feishu.cn/wiki/ANWewPW06iuxtbkL9gIcYHqlneb" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #94a3b8; text-decoration: none; font-size: 14px; padding: 8px 16px; border-radius: 8px; transition: all 0.3s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">
-                        📚 3分钟安装教程
-                    </a>
-                    <a href="https://qcnmprsw5rpc.feishu.cn/wiki/VU3Hwg5mXiCj7OkKa2icz4qpnub" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #94a3b8; text-decoration: none; font-size: 14px; padding: 8px 16px; border-radius: 8px; transition: all 0.3s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">
-                        🆚 版本功能对比
-                    </a>
-                </div>
-
-                <div style="text-align: center; margin-top: 24px; padding: 16px; background: rgba(34, 197, 94, 0.1); border-radius: 8px;">
-                    <p style="margin: 0; color: #22c55e; font-size: 14px;">🎁 试用福利：软件内提供 test 测试码，建议先安装试用，满意再下单（找客服要）</p>
-                </div>
-            </div>
-
-            <!-- 硬件建议与风险提示 -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 48px;">
-                <div style="background: rgba(255,255,255,0.05); border-radius: 16px; padding: 28px;">
-                    <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 16px; color: #fff;">💡 硬件建议</h4>
-                    <ul style="list-style: none; padding: 0; margin: 0; color: #94a3b8; line-height: 1.8;">
-                        <li style="margin-bottom: 12px;"><strong style="color: #fff;">轻量用户：</strong>若仅用于浏览网页，普通配置即可。</li>
-                        <li><strong style="color: #fff;">重度用户：</strong>小龙虾是你的"数字分身"，需要运行你所使用的应用。建议电脑配置与你日常办公配置对等。</li>
-                    </ul>
-                </div>
-                <div style="background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 16px; padding: 28px;">
-                    <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 16px; color: #fff;">⚠️ 风险提示</h4>
-                    <p style="color: #94a3b8; line-height: 1.7; margin: 0;">强烈建议在<strong style="color: #ef4444;">独立电脑或服务器上部署</strong>，尽量不要在核心工作电脑安装，规避极端概率下的系统干扰。</p>
-                </div>
-            </div>
-
-            <!-- 遇到问题 -->
-            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 32px;">
-                <h4 style="font-size: 20px; font-weight: 700; margin-bottom: 20px; color: #fff;">❓ 遇到问题怎么办？</h4>
-                <p style="color: #94a3b8; margin-bottom: 20px;">我们深耕企业 AI 应用十余年，致力于出品最稳最强的版本，但无法做到 1v1 基础交付，请理解。</p>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;">
-                    <div style="display: flex; align-items: start; gap: 12px;">
-                        <span style="background: rgba(99,102,241,0.2); color: #6366f1; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 600;">1</span>
-                        <div>
-                            <div style="font-weight: 600; color: #fff; margin-bottom: 4px;">小白自救</div>
-                            <div style="color: #94a3b8; font-size: 14px;">建议先咨询"豆包"进行部署共享协助，或在群里咨询小伙伴。</div>
-                        </div>
-                    </div>
-                    <div style="display: flex; align-items: start; gap: 12px;">
-                        <span style="background: rgba(34,197,94,0.2); color: #22c55e; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 600;">2</span>
-                        <div>
-                            <div style="font-weight: 600; color: #fff; margin-bottom: 4px;">BUG 反馈</div>
-                            <div style="color: #94a3b8; font-size: 14px;">页面左下角点击"意见与建议"，优先建议选采纳，<strong style="color: #22c55e;">直接赠送高级会员 7 天</strong>。</div>
-                        </div>
-                    </div>
-                    <div style="display: flex; align-items: start; gap: 12px;">
-                        <span style="background: rgba(245,158,11,0.2); color: #f59e0b; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 600;">3</span>
-                        <div>
-                            <div style="font-weight: 600; color: #fff; margin-bottom: 4px;">深度定制</div>
-                            <div style="color: #94a3b8; font-size: 14px;">企业级 AI 方案规划、Agent 专项定制，请联系我们。</div>
-                        </div>
-                    </div>
-                    <div style="display: flex; align-items: start; gap: 12px;">
-                        <span style="background: rgba(139,92,246,0.2); color: #8b5cf6; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 600;">4</span>
-                        <div>
-                            <div style="font-weight: 600; color: #fff; margin-bottom: 4px;">人工服务</div>
-                            <div style="color: #94a3b8; font-size: 14px;">如需 1v1 深度带教（付费服务），请联系我们。</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- 三大特色 -->
     <section class="features" id="features">
         <div class="container">
             <div class="section-header">
-                <div class="section-tag">核心优势</div>
-                <h2 class="section-title">为什么选择 WowOclaw</h2>
-                <p class="section-desc">开源、灵活、安全。让您的 AI 助手真正属于您。</p>
+                <div class="section-tag">核心能力</div>
+                <h2 class="section-title">为什么选择 WodeClaw</h2>
+                <p class="section-desc">开源、灵活、安全。让您的 AI 数字员工真正属于您。</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">🔐</div>
-                    <h3>私有化部署</h3>
-                    <p>所有数据本地存储，敏感信息绝不外泄。支持完全离线运行，满足企业级安全合规要求。</p>
+                    <div class="feature-icon">🤖</div>
+                    <h3>智能体编排</h3>
+                    <p>OpenClaw智能编排引擎，轻松构建复杂AI工作流。从提示词到成品，全链路自动化。</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🛠️</div>
-                    <h3>丰富工具生态</h3>
-                    <p>内置 50+ 种工具，涵盖搜索、文件处理、代码执行、图像生成等。支持自定义工具开发。</p>
+                    <h3>技能包生态</h3>
+                    <p>内置 50+ 种技能包，涵盖客服、财务、HR、数据分析等。支持自定义开发，一键上架。</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔌</div>
@@ -1205,8 +871,8 @@
         <div class="container">
             <div class="mobile-grid">
                 <div class="mobile-content">
-                    <h2>随时随地<br>掌控您的 AI 助手</h2>
-                    <p>离开电脑也能高效工作。通过手机 App 远程管理您的智能助手，任务进度一目了然。</p>
+                    <h2>随时随地<br>掌控您的数字员工</h2>
+                    <p>离开电脑也能高效工作。通过手机 App 远程管理您的AI智能体，任务进度一目了然。</p>
                     <div class="feature-list">
                         <div class="feature-item">
                             <div class="feature-check">✓</div>
@@ -1235,8 +901,8 @@
                     <div class="phone-mockup">
                         <div class="phone-screen">
                             <div class="phone-icon">📱</div>
-                            <div class="phone-title">WowOclaw App</div>
-                            <div class="phone-desc">远程管理您的 AI 助手<br>任务 · 消息 · 统计</div>
+                            <div class="phone-title">WodeClaw App</div>
+                            <div class="phone-desc">远程管理您的数字员工<br>任务 · 消息 · 统计</div>
                         </div>
                     </div>
                 </div>
@@ -1250,7 +916,7 @@
             <div class="section-header">
                 <div class="section-tag">应用场景</div>
                 <h2 class="section-title">无限可能，一个平台</h2>
-                <p class="section-desc">从个人效率到企业自动化，WowOclaw 都能胜任。</p>
+                <p class="section-desc">从个人效率到企业自动化，WodeClaw 都能胜任。</p>
             </div>
             <div class="cases-grid">
                 <div class="case-item">
@@ -1305,122 +971,12 @@
         </div>
     </section>
 
-    <!-- 最新资讯 -->
-    <section class="news-section" id="news" style="padding: 100px 24px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white;">
-        <div class="container" style="max-width: 1200px; margin: 0 auto;">
-            <div class="section-header" style="text-align: center; margin-bottom: 60px;">
-                <div style="display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, #22c55e, #16a34a); padding: 12px 28px; border-radius: 50px; font-weight: 700; font-size: 16px; margin-bottom: 24px;">
-                    <span>📰</span> 每日更新
-                </div>
-                <h2 class="section-title" style="font-size: 42px; font-weight: 800; margin-bottom: 16px; color: #fff;">最新资讯</h2>
-                <p class="section-subtitle" style="font-size: 18px; color: #94a3b8;">OpenClaw 生态最新动态、热门项目、技术趋势</p>
-            </div>
-            
-            <!-- 资讯卡片 -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; margin-bottom: 48px;">
-                <!-- 热门项目 1 -->
-                <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 32px; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-8px)';this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.transform='translateY(0)';this.style.background='rgba(255,255,255,0.05)'">
-                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-                        <span style="font-size: 32px;">⭐</span>
-                        <span style="background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #000; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700;">TOP 1</span>
-                    </div>
-                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #fff;">karpathy/autoresearch</h3>
-                    <p style="color: #94a3b8; line-height: 1.7; margin-bottom: 16px;">AI agents 自动在单 GPU 上运行 nanochat 训练研究，Star 数高达 22,596！</p>
-                    <div style="display: flex; align-items: center; gap: 16px; color: #64748b; font-size: 14px;">
-                        <span>⭐ 22,596</span>
-                        <span>🍴 2,870</span>
-                        <span>💻 Python</span>
-                    </div>
-                </div>
-
-                <!-- 热门项目 2 -->
-                <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 32px; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-8px)';this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.transform='translateY(0)';this.style.background='rgba(255,255,255,0.05)'">
-                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-                        <span style="font-size: 32px;">🎯</span>
-                        <span style="background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700;">TOP 2</span>
-                    </div>
-                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #fff;">HKUDS/CLI-Anything</h3>
-                    <p style="color: #94a3b8; line-height: 1.7; margin-bottom: 16px;">让所有软件都变成 Agent-Native！CLI-Anything 让你的命令行工具智能化。</p>
-                    <div style="display: flex; align-items: center; gap: 16px; color: #64748b; font-size: 14px;">
-                        <span>⭐ 2,445</span>
-                        <span>🍴 236</span>
-                        <span>💻 Python</span>
-                    </div>
-                </div>
-
-                <!-- 热门项目 3 -->
-                <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 32px; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-8px)';this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.transform='translateY(0)';this.style.background='rgba(255,255,255,0.05)'">
-                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-                        <span style="font-size: 32px;">🔥</span>
-                        <span style="background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700;">TOP 3</span>
-                    </div>
-                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #fff;">twostraws/SwiftUI-Agent-Skill</h3>
-                    <p style="color: #94a3b8; line-height: 1.7; margin-bottom: 16px;">SwiftUI Agent Skill，专为 Claude Code、Codex 等 AI 工具打造的开发技能。</p>
-                    <div style="display: flex; align-items: center; gap: 16px; color: #64748b; font-size: 14px;">
-                        <span>⭐ 1,746</span>
-                        <span>🍴 57</span>
-                        <span>💻 SwiftUI</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 查看更多 -->
-            <div style="text-align: center;">
-                <a href="https://github.com/trending" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); color: white; padding: 14px 32px; border-radius: 10px; text-decoration: none; font-weight: 600; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
-                    查看更多 GitHub 趋势 →
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 用户证言 -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">用户怎么说</h2>
-                <p class="section-subtitle">来自全球开发者和企业用户的真实反馈</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"WowOclaw 改变了我的工作方式。以前需要手动处理的大量重复性任务，现在只需要一句话就能完成。效率提升了至少 3 倍！"</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">李</div>
-                        <div class="author-info">
-                            <h4>李明</h4>
-                            <span>全栈工程师 @ 某独角兽公司</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"作为一个非技术人员，WowOclaw 让我也能轻松使用 AI 自动化。界面直观，文档清晰，遇到问题社区也很热心。强烈推荐！"</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">王</div>
-                        <div class="author-info">
-                            <h4>王芳</h4>
-                            <span>产品经理 @ 互联网大厂</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"私有化部署是我们选择 WowOclaw 的关键。数据完全在自己服务器上，安全性有保障。而且扩展性很强，我们定制了很多企业专属功能。"</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">张</div>
-                        <div class="author-info">
-                            <h4>张伟</h4>
-                            <span>CTO @ 金融科技公司</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- CTA区域 -->
     <section class="cta-section" id="contact">
         <div class="cta-content">
             <h2>准备好开始了吗？</h2>
-            <p>立即下载 WowOclaw，体验智能化工作流</p>
-            <a href="#download" class="cta-button-large">⬇️ 立即免费下载</a>
+            <p>立即部署您的专属 AI 数字员工，体验智能化工作流</p>
+            <a href="#" class="cta-button-large">免费开始使用 →</a>
         </div>
     </section>
 
@@ -1430,9 +986,9 @@
             <div class="footer-about">
                 <div class="footer-brand">
                     <div class="footer-brand-icon">🦅</div>
-                    WowOclaw
+                    WodeClaw
                 </div>
-                <p class="footer-desc">基于 OpenClaw 框架的开源 AI 助手平台。让每个人都能拥有属于自己的智能助手。</p>
+                <p class="footer-desc">基于 OpenClaw 框架的开源 AI 智能体平台。让每个人都能拥有属于自己的数字员工。</p>
                 <div class="footer-social">
                     <div class="social-icon">📧</div>
                     <div class="social-icon">💬</div>
@@ -1469,7 +1025,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <div>© 2026 WowOclaw. All rights reserved.</div>
+            <div>© 2026 WodeClaw. All rights reserved.</div>
             <div>基于 OpenClaw 框架构建</div>
         </div>
     </footer>
