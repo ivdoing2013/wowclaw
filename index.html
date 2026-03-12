@@ -88,14 +88,18 @@
         .logo-icon {
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            -webkit-text-fill-color: white;
+            overflow: hidden;
             box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+        }
+        
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         .nav-links {
@@ -660,11 +664,11 @@
         .footer-brand-icon {
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
             box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
         }
         
@@ -798,13 +802,14 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <div class="logo-icon">🦅</div>
+                <div class="logo-icon"><img src="logo-lobster.jpg" alt="WodeClaw"></div>
                 WodeClaw
             </div>
             <div class="nav-links">
                 <a href="#features">AI能力</a>
                 <a href="#mobile">数字员工</a>
                 <a href="#cases">应用场景</a>
+                <a href="#download">下载</a>
                 <a href="#docs">开发文档</a>
                 <a href="#contact" class="nav-cta">立即开始</a>
             </div>
@@ -1138,12 +1143,118 @@
         </div>
     </section>
 
+    <!-- 下载区域 -->
+    <section class="download-section" id="download">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">立即下载</div>
+                <h2 class="section-title">选择您的平台</h2>
+                <p class="section-desc">支持 Windows 和 macOS，一键安装，即刻体验</p>
+            </div>
+            <div class="download-grid">
+                <a href="https://github.com/ivdoing2013/wowclaw/releases/download/v1.6.7/ClawdbotCN_1.6.7_x64-setup.exe" class="download-card">
+                    <div class="download-icon">🪟</div>
+                    <h3>Windows</h3>
+                    <p>Windows 10/11</p>
+                    <span class="download-btn">下载安装包</span>
+                </a>
+                <a href="https://github.com/ivdoing2013/wowclaw/releases/download/v1.6.7/ClawdbotCN_1.6.7_xiangdong_v4_universal.dmg" class="download-card">
+                    <div class="download-icon">🍎</div>
+                    <h3>macOS</h3>
+                    <p>Intel / Apple Silicon</p>
+                    <span class="download-btn">下载安装包</span>
+                </a>
+            </div>
+            <div class="download-info">
+                <p>📦 当前版本：v1.6.7 | 更新日期：2025-03-10</p>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .download-section {
+            padding: 120px 24px;
+            background: linear-gradient(135deg, rgba(15,12,41,0.95), rgba(48,43,99,0.95));
+            position: relative;
+            z-index: 1;
+        }
+        .download-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            max-width: 700px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        .download-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 48px 40px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s;
+            min-width: 240px;
+            backdrop-filter: blur(10px);
+        }
+        .download-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(139, 92, 246, 0.4);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
+        }
+        .download-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        .download-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        .download-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 14px 32px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+        }
+        .download-card:hover .download-btn {
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
+        }
+        .download-info {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        @media (max-width: 600px) {
+            .download-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            .download-card {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+
     <!-- CTA区域 -->
     <section class="cta-section" id="contact">
         <div class="cta-content">
             <h2>准备好开始了吗？</h2>
             <p>立即部署您的专属 AI 数字员工，体验智能化工作流</p>
-            <a href="#" class="cta-button-large">免费开始使用 →</a>
+            <a href="#download" class="cta-button-large">免费下载使用 →</a>
         </div>
     </section>
 
@@ -1152,7 +1263,7 @@
         <div class="footer-grid">
             <div class="footer-about">
                 <div class="footer-brand">
-                    <div class="footer-brand-icon">🦅</div>
+                    <div class="footer-brand-icon"><img src="logo-lobster.jpg" alt="WodeClaw" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"></div>
                     WodeClaw
                 </div>
                 <p class="footer-desc">基于 OpenClaw 框架的开源 AI 智能体平台。让每个人都能拥有属于自己的数字员工。</p>
