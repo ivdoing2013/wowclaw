@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WodeClaw AI - 智能助手</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #8b5cf6;
+            --primary-glow: #a78bfa;
+            --secondary: #06b6d4;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --dark: #0f0c29;
+            --dark-secondary: #302b63;
+            --dark-tertiary: #24243e;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255,255,255,0.7);
+            --text-muted: rgba(255,255,255,0.5);
+            --glass: rgba(255,255,255,0.05);
+            --glass-border: rgba(255,255,255,0.1);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 12, 41, 0.9);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+        
+        /* 主界面 */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 24px 24px;
+            display: flex;
+            gap: 24px;
+            height: 100vh;
+        }
+        
+        /* 侧边栏 */
+        .sidebar {
+            width: 280px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .new-chat-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .new-chat-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+        }
+        
+        .sidebar-title {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+        
+        .chat-history {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .chat-item {
+            padding: 12px 16px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.03);
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+        }
+        
+        .chat-item:hover {
+            background: rgba(255,255,255,0.08);
+        }
+        
+        .chat-item.active {
+            background: rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+        
+        /* 聊天区域 */
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            overflow: hidden;
+        }
+        
+        .chat-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chat-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .model-selector {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .model-select {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .messages-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .message {
+            display: flex;
+            gap: 16px;
+            max-width: 80%;
+        }
+        
+        .message.user {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+        
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .message.ai .message-avatar {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        
+        .message.user .message-avatar {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .message-content {
+            background: rgba(255,255,255,0.08);
+            padding: 16px 20px;
+            border-radius: 16px;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .message.user .message-content {
+            background: linear-gradient(135deg, rgba(139,92,246,0.3), rgba(6,182,212,0.3));
+        }
+        
+        /* 输入区域 */
+        .input-container {
+            padding: 20px 24px;
+            border-top: 1px solid var(--glass-border);
+        }
+        
+        .input-wrapper {
+            display: flex;
+            gap: 12px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 12px 16px;
+            border: 1px solid var(--glass-border);
+        }
+        
+        .input-wrapper:focus-within {
+            border-color: var(--primary);
+        }
+        
+        .message-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 15px;
+            outline: none;
+            resize: none;
+            min-height: 24px;
+            max-height: 200px;
+        }
+        
+        .message-input::placeholder {
+            color: var(--text-muted);
+        }
+        
+        .send-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .send-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+        }
+        
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* 快速提示 */
+        .quick-prompts {
+            display: flex;
+            gap: 12px;
+            padding: 0 24px 16px;
+            flex-wrap: wrap;
+        }
+        
+        .quick-prompt {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quick-prompt:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+        
+        /* 设置面板 */
+        .settings-panel {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background: rgba(15, 12, 41, 0.98);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid var(--glass-border);
+            padding: 100px 24px 24px;
+            transition: right 0.3s;
+            z-index: 999;
+            overflow-y: auto;
+        }
+        
+        .settings-panel.open {
+            right: 0;
+        }
+        
+        .settings-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        
+        .setting-item {
+            margin-bottom: 24px;
+        }
+        
+        .setting-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .setting-input {
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        .close-settings {
+            position: absolute;
+            top: 80px;
+            right: 24px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            
+            .main-container {
+                padding: 80px 12px 12px;
+            }
+            
+            .message {
+                max-width: 90%;
+            }
+        }
+        
+        /* 打字动画 */
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 8px 0;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--text-muted);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+        
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <span>🦞</span>
+                <span>WodeClaw AI</span>
+            </a>
+            <div class="nav-links">
+                <a href="#" onclick="toggleSettings()">⚙️ 设置</a>
+                <a href="/">🏠 返回官网</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主界面 -->
+    <div class="main-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <button class="new-chat-btn" onclick="newChat()">
+                <span>+</span>
+                <span>新建对话</span>
+            </button>
+            
+            <div class="sidebar-title">历史对话</div>
+            <div class="chat-history" id="chatHistory">
+                <div class="chat-item active">
+                    <span>💬</span>
+                    <span>新对话</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 聊天区域 -->
+        <main class="chat-container">
+            <div class="chat-header">
+                <div class="chat-title">AI 智能助手</div>
+                <div class="model-selector">
+                    <span style="font-size: 14px; color: var(--text-secondary);">模型:</span>
+                    <select class="model-select" id="modelSelect">
+                        <option value="gpt-4">GPT-4</option>
+                        <option value="gpt-3.5">GPT-3.5</option>
+                        <option value="claude">Claude</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="messages-container" id="messagesContainer">
+                <div class="message ai">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        你好！我是 WodeClaw AI 智能助手。我可以帮你回答问题、写作、分析数据、编写代码等。请问有什么可以帮你的？
+                    </div>
+                </div>
+            </div>
+
+            <div class="quick-prompts">
+                <div class="quick-prompt" onclick="sendQuickPrompt('帮我写一篇小红书文案')">✍️ 写小红书文案</div>
+                <div class="quick-prompt" onclick="sendQuickPrompt('解释这段代码')">💻 解释代码</div>
+                <div class="quick-prompt" onclick="sendQuickPrompt('分析这份数据')">📊 数据分析</div>
+                <div class="quick-prompt" onclick="sendQuickPrompt('帮我写一封邮件')">📧 写邮件</div>
+            </div>
+
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <textarea 
+                        class="message-input" 
+                        id="messageInput"
+                        placeholder="输入你的问题..."
+                        rows="1"
+                        onkeydown="handleKeyDown(event)"
+                    ></textarea>
+                    <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+                        ➤
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 设置面板 -->
+    <div class="settings-panel" id="settingsPanel">
+        <button class="close-settings" onclick="toggleSettings()">×</button>
+        <h2 class="settings-title">⚙️ API 设置</h2>
+        
+        <div class="setting-item">
+            <label class="setting-label">OpenAI API Key</label>
+            <input type="password" class="setting-input" id="openaiKey" placeholder="sk-...">
+        </div>
+        
+        <div class="setting-item">
+            <label class="setting-label">API 基础 URL（可选）</label>
+            <input type="text" class="setting-input" id="apiBase" placeholder="https://api.openai.com/v1">
+        </div>
+        
+        <div class="setting-item">
+            <label class="setting-label">温度 (Temperature)</label>
+            <input type="range" class="setting-input" id="temperature" min="0" max="2" step="0.1" value="0.7">
+        </div>
+        
+        <button class="new-chat-btn" onclick="saveSettings()" style="margin-top: 20px;">
+            保存设置
+        </button>
+    </div>
+
+    <script>
+        // 全局变量
+        let messages = [];
+        let isGenerating = false;
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSettings();
+            autoResizeTextarea();
+        });
+
+        // 自动调整文本框高度
+        function autoResizeTextarea() {
+            const textarea = document.getElementById('messageInput');
+            textarea.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = Math.min(this.scrollHeight, 200) + 'px';
+            });
+        }
+
+        // 处理键盘事件
+        function handleKeyDown(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+
+        // 发送消息
+        async function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (!message || isGenerating) return;
+
+            // 添加用户消息
+            addMessage('user', message);
+            input.value = '';
+            input.style.height = 'auto';
+
+            // 显示加载动画
+            showTypingIndicator();
+            isGenerating = true;
+            document.getElementById('sendBtn').disabled = true;
+
+            try {
+                // 调用 AI API
+                const response = await callAI(message);
+                hideTypingIndicator();
+                addMessage('ai', response);
+            } catch (error) {
+                hideTypingIndicator();
+                addMessage('ai', '抱歉，发生了错误：' + error.message);
+            } finally {
+                isGenerating = false;
+                document.getElementById('sendBtn').disabled = false;
+            }
+        }
+
+        // 调用 AI API
+        async function callAI(message) {
+            const apiKey = localStorage.getItem('openaiKey');
+            const apiBase = localStorage.getItem('apiBase') || 'https://api.openai.com/v1';
+            const model = document.getElementById('modelSelect').value;
+
+            if (!apiKey) {
+                throw new Error('请先设置 API Key');
+            }
+
+            const response = await fetch(`${apiBase}/chat/completions`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                },
+                body: JSON.stringify({
+                    model: model,
+                    messages: [
+                        { role: 'system', content: '你是一个 helpful 的 AI 助手。' },
+                        { role: 'user', content: message }
+                    ],
+                    temperature: parseFloat(localStorage.getItem('temperature') || 0.7)
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('API 请求失败');
+            }
+
+            const data = await response.json();
+            return data.choices[0].message.content;
+        }
+
+        // 添加消息到界面
+        function addMessage(role, content) {
+            const container = document.getElementById('messagesContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${role}`;
+            messageDiv.innerHTML = `
+                <div class="message-avatar">${role === 'ai' ? '🤖' : '👤'}</div>
+                <div class="message-content">${escapeHtml(content)}</div>
+            `;
+            container.appendChild(messageDiv);
+            container.scrollTop = container.scrollHeight;
+            
+            messages.push({ role, content });
+        }
+
+        // 显示打字动画
+        function showTypingIndicator() {
+            const container = document.getElementById('messagesContainer');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message ai typing';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = `
+                <div class="message-avatar">🤖</div>
+                <div class="message-content">
+                    <div class="typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(typingDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        // 隐藏打字动画
+        function hideTypingIndicator() {
+            const typing = document.getElementById('typingIndicator');
+            if (typing) typing.remove();
+        }
+
+        // 快速提示
+        function sendQuickPrompt(prompt) {
+            document.getElementById('messageInput').value = prompt;
+            sendMessage();
+        }
+
+        // 新建对话
+        function newChat() {
+            messages = [];
+            document.getElementById('messagesContainer').innerHTML = `
+                <div class="message ai">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        你好！我是 WodeClaw AI 智能助手。我可以帮你回答问题、写作、分析数据、编写代码等。请问有什么可以帮你的？
+                    </div>
+                </div>
+            `;
+        }
+
+        // 切换设置面板
+        function toggleSettings() {
+            const panel = document.getElementById('settingsPanel');
+            panel.classList.toggle('open');
+        }
+
+        // 保存设置
+        function saveSettings() {
+            localStorage.setItem('openaiKey', document.getElementById('openaiKey').value);
+            localStorage.setItem('apiBase', document.getElementById('apiBase').value);
+            localStorage.setItem('temperature', document.getElementById('temperature').value);
+            alert('设置已保存！');
+            toggleSettings();
+        }
+
+        // 加载设置
+        function loadSettings() {
+            document.getElementById('openaiKey').value = localStorage.getItem('openaiKey') || '';
+            document.getElementById('apiBase').value = localStorage.getItem('apiBase') || '';
+            document.getElementById('temperature').value = localStorage.getItem('temperature') || '0.7';
+        }
+
+        // HTML转义
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>
