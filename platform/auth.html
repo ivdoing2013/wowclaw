@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册入驻 | WodeClaw 一人公司拎包入住平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #8b5cf6;
+            --primary-glow: #a78bfa;
+            --secondary: #06b6d4;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --dark: #0f0c29;
+            --dark-secondary: #302b63;
+            --dark-tertiary: #24243e;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255,255,255,0.7);
+            --text-muted: rgba(255,255,255,0.5);
+            --glass: rgba(255,255,255,0.05);
+            --glass-border: rgba(255,255,255,0.1);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .auth-container {
+            width: 100%;
+            max-width: 480px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 48px;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(20px);
+        }
+        
+        .auth-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .auth-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .auth-subtitle {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+        }
+        
+        .form-input::placeholder {
+            color: var(--text-muted);
+        }
+        
+        .btn-primary {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 8px;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+        }
+        
+        .auth-footer {
+            text-align: center;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--glass-border);
+        }
+        
+        .auth-footer p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        
+        .auth-footer a {
+            color: var(--primary-glow);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+        
+        .step {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--glass);
+            border: 2px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: all 0.3s;
+        }
+        
+        .step.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-color: transparent;
+            color: white;
+        }
+        
+        .step.completed {
+            background: var(--success);
+            border-color: transparent;
+            color: white;
+        }
+        
+        .step-line {
+            width: 40px;
+            height: 2px;
+            background: var(--glass-border);
+            align-self: center;
+        }
+        
+        .step-line.completed {
+            background: var(--success);
+        }
+        
+        /* 步骤内容 */
+        .step-content {
+            display: none;
+        }
+        
+        .step-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 需求选择 */
+        .needs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .need-card {
+            padding: 16px;
+            background: var(--glass);
+            border: 2px solid var(--glass-border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .need-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .need-card.selected {
+            border-color: var(--primary);
+            background: rgba(139, 92, 246, 0.1);
+        }
+        
+        .need-card .icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        
+        .need-card .title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .need-card .desc {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        
+        /* AI匹配结果 */
+        .match-result {
+            text-align: center;
+            padding: 32px;
+            background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(6,182,212,0.1));
+            border-radius: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .match-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            margin: 0 auto 16px;
+            border: 4px solid rgba(255,255,255,0.1);
+            animation: bounce 0.6s ease;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .match-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .match-role {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .match-desc {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 16px;
+            transition: color 0.3s;
+        }
+        
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+        
+        @media (max-width: 480px) {
+            .auth-container {
+                padding: 32px 24px;
+            }
+            
+            .needs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <!-- 步骤指示器 -->
+        <div class="step-indicator">
+            <div class="step active" id="step1-indicator">1</div>
+            <div class="step-line" id="line1"></div>
+            <div class="step" id="step2-indicator">2</div>
+            <div class="step-line" id="line2"></div>
+            <div class="step" id="step3-indicator">3</div>
+        </div>
+        
+        <!-- 步骤1：基本信息 -->
+        <div class="step-content active" id="step1">
+            <div class="auth-header">
+                <a href="../" class="logo">
+                    <div class="logo-icon">🦞</div>
+                    WodeClaw
+                </a>
+                <h1 class="auth-title">开启您的创业之旅</h1>
+                <p class="auth-subtitle">3分钟完成注册，专属AI助手即刻为您服务</p>
+            </div>
+            
+            <form id="registerForm">
+                <div class="form-group">
+                    <label class="form-label">您的姓名</label>
+                    <input type="text" class="form-input" placeholder="请输入您的真实姓名" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">手机号码</label>
+                    <input type="tel" class="form-input" placeholder="请输入11位手机号" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">公司名称（选填）</label>
+                    <input type="text" class="form-input" placeholder="已注册公司请填写，未注册可不填">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">创业领域</label>
+                    <select class="form-input" style="cursor: pointer;">
+                        <option value="">请选择您的创业方向</option>
+                        <option value="tech">科技/互联网</option>
+                        <option value="ecommerce">电商/零售</option>
+                        <option value="content">内容/媒体</option>
+                        <option value="service">服务/咨询</option>
+                        <option value="other">其他</option>
+                    </select>
+                </div>
+                
+                <button type="button" class="btn-primary" onclick="goToStep(2)">
+                    下一步：选择服务需求 →
+                </button>
+            </form>
+            
+            <div class="auth-footer">
+                <p>已有账号？<a href="login.html">立即登录</a></p>
+            </div>
+        </div>
+        
+        <!-- 步骤2：需求匹配 -->
+        <div class="step-content" id="step2">
+            <div class="auth-header">
+                <h1 class="auth-title">您最需要什么帮助？</h1>
+                <p class="auth-subtitle">选择最紧迫的需求，我们将为您匹配最佳AI助手</p>
+            </div>
+            
+            <div class="needs-grid">
+                <div class="need-card" onclick="selectNeed(this, 'market')">
+                    <div class="icon">📢</div>
+                    <div class="title">市场推广</div>
+                    <div class="desc">品牌策划、文案创作、获客引流</div>
+                </div>
+                
+                <div class="need-card" onclick="selectNeed(this, 'tech')">
+                    <div class="icon">💻</div>
+                    <div class="title">技术开发</div>
+                    <div class="desc">产品开发、网站搭建、技术支持</div>
+                </div>
+                
+                <div class="need-card" onclick="selectNeed(this, 'finance')">
+                    <div class="icon">💰</div>
+                    <div class="title">财务记账</div>
+                    <div class="desc">记账报税、成本控制、财务规划</div>
+                </div>
+                
+                <div class="need-card" onclick="selectNeed(this, 'legal')">
+                    <div class="icon">⚖️</div>
+                    <div class="title">法务合规</div>
+                    <div class="desc">合同审核、知识产权保护、合规建议</div>
+                </div>
+                
+                <div class="need-card" onclick="selectNeed(this, 'service')">
+                    <div class="icon">🎧</div>
+                    <div class="title">客户服务</div>
+                    <div class="desc">客户沟通、售后支持、用户运营</div>
+                </div>
+                
+                <div class="need-card" onclick="selectNeed(this, 'all')">
+                    <div class="icon">🚀</div>
+                    <div class="title">全部都需要</div>
+                    <div class="desc">一站式全包服务，完整AI团队</div>
+                </div>
+            </div>
+            
+            <button type="button" class="btn-primary" onclick="matchAssistant()">
+                匹配我的专属助手
+            </button>
+            
+            <div style="text-align: center;">
+                <a href="#" class="back-link" onclick="goToStep(1); return false;">
+                    ← 返回上一步
+                </a>
+            </div>
+        </div>
+        
+        <!-- 步骤3：匹配结果 -->
+        <div class="step-content" id="step3">
+            <div class="match-result">
+                <div class="match-avatar" id="matchAvatar">🐟</div>
+                <h2 class="match-name" id="matchName">小鱼</h2>
+                <div class="match-role" id="matchRole">您的专属市场总监</div>
+                <p class="match-desc" id="matchDesc">
+                    根据您的需求，小鱼将成为您的第一位AI员工。<br>
+                    她擅长品牌策划、文案创作和获客引流，<br>
+                    帮您快速打开市场！
+                </p>
+            </div>
+            
+            <div style="background: var(--glass); border-radius: 12px; padding: 16px; margin-bottom: 24px;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                    <div style="width: 8px; height: 8px; background: var(--success); border-radius: 50%;"></div>
+                    <span style="font-size: 14px;">7×24小时在线服务</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                    <div style="width: 8px; height: 8px; background: var(--success); border-radius: 50%;"></div>
+                    <span style="font-size: 14px;">支持微信/邮件/网页多端沟通</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 8px; height: 8px; background: var(--success); border-radius: 50%;"></div>
+                    <span style="font-size: 14px;">可随时扩充AI团队规模</span>
+                </div>
+            </div>
+            
+            <button type="button" class="btn-primary" onclick="enterDashboard()">
+                进入我的办公室 →
+            </button>
+            
+            <div style="text-align: center; margin-top: 16px;">
+                <a href="#" class="back-link" onclick="goToStep(2); return false;">
+                    ← 重新选择需求
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let selectedNeed = null;
+        
+        function goToStep(step) {
+            // 隐藏所有步骤
+            document.querySelectorAll('.step-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // 显示目标步骤
+            document.getElementById('step' + step).classList.add('active');
+            
+            // 更新步骤指示器
+            updateStepIndicator(step);
+        }
+        
+        function updateStepIndicator(currentStep) {
+            for (let i = 1; i <= 3; i++) {
+                const indicator = document.getElementById('step' + i + '-indicator');
+                const line = document.getElementById('line' + i);
+                
+                if (i < currentStep) {
+                    indicator.classList.add('completed');
+                    indicator.classList.remove('active');
+                    indicator.innerHTML = '✓';
+                    if (line) line.classList.add('completed');
+                } else if (i === currentStep) {
+                    indicator.classList.add('active');
+                    indicator.classList.remove('completed');
+                    indicator.innerHTML = i;
+                } else {
+                    indicator.classList.remove('active', 'completed');
+                    indicator.innerHTML = i;
+                }
+            }
+        }
+        
+        function selectNeed(element, need) {
+            document.querySelectorAll('.need-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            selectedNeed = need;
+        }
+        
+        function matchAssistant() {
+            if (!selectedNeed) {
+                alert('请先选择一个需求方向');
+                return;
+            }
+            
+            // 根据选择匹配不同的AI助手
+            const matches = {
+                'market': { avatar: '🐟', name: '小鱼', role: '您的专属市场总监', desc: '根据您的需求，小鱼将成为您的第一位AI员工。<br>她擅长品牌策划、文案创作和获客引流，<br>帮您快速打开市场！' },
+                'tech': { avatar: '💻', name: '小码', role: '您的专属技术总监', desc: '根据您的需求，小码将成为您的第一位AI员工。<br>他擅长产品开发、系统架构和技术实现，<br>帮您把想法变成现实！' },
+                'finance': { avatar: '💰', name: '小财', role: '您的专属财务总监', desc: '根据您的需求，小财将成为您的第一位AI员工。<br>他擅长财务规划、成本控制和税务优化，<br>让您的资金发挥最大价值！' },
+                'legal': { avatar: '⚖️', name: '小法', role: '您的专属法务顾问', desc: '根据您的需求，小法将成为您的第一位AI员工。<br>他擅长合同审核、知识产权保护和合规建议，<br>为您的创业保驾护航！' },
+                'service': { avatar: '🎧', name: '小客', role: '您的专属客服专员', desc: '根据您的需求，小客将成为您的第一位AI员工。<br>她擅长客户沟通、售后支持和用户运营，<br>让您的客户满意度飙升！' },
+                'all': { avatar: '🦞', name: '小智', role: '您的专属创业管家', desc: '根据您的需求，我们将为您组建完整的5人AI团队！<br>小码+小鱼+小财+小法+小客全员到位，<br>让您真正实现"拎包入住"式创业！' }
+            };
+            
+            const match = matches[selectedNeed];
+            document.getElementById('matchAvatar').textContent = match.avatar;
+            document.getElementById('matchName').textContent = match.name;
+            document.getElementById('matchRole').textContent = match.role;
+            document.getElementById('matchDesc').innerHTML = match.desc;
+            
+            goToStep(3);
+        }
+        
+        function enterDashboard() {
+            // 模拟注册完成，跳转到Dashboard
+            window.location.href = 'dashboard.html';
+        }
+    </script>
+</body>
+</html>
