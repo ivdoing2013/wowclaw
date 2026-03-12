@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>公司组织架构 | WodeClaw - 一人公司战略规划</title>
+    <title>一人公司拎包入住 | WodeClaw - 注册/法务/财务/税务全包</title>
+    <meta name="description" content="WodeClaw一人公司拎包入住平台，让创始人只专注产品+市场，公司注册、法务合规、财务记账、税务申报、银行开户、社保公积金所有杂事我们全包。">
     <style>
         * {
             margin: 0;
@@ -134,7 +135,7 @@
         }
         
         .nav-cta {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--accent), #fbbf24);
             color: white;
             padding: 10px 24px;
             border-radius: 8px;
@@ -142,20 +143,55 @@
             font-size: 14px;
             font-weight: 600;
             transition: all 0.3s;
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
         }
         
         .nav-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.6);
         }
         
         /* Hero区域 */
         .hero {
-            padding: 140px 24px 80px;
+            padding: 160px 24px 100px;
             text-align: center;
             position: relative;
             z-index: 1;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(245,158,11,0.15) 0%, transparent 70%);
+            animation: float 8s ease-in-out infinite reverse;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
         }
         
         .hero-badge {
@@ -164,208 +200,206 @@
             gap: 8px;
             background: var(--glass);
             border: 1px solid var(--glass-border);
-            padding: 8px 20px;
+            padding: 10px 24px;
             border-radius: 50px;
             font-size: 14px;
-            color: var(--primary-glow);
+            color: var(--accent);
             font-weight: 600;
-            margin-bottom: 24px;
+            margin-bottom: 32px;
             backdrop-filter: blur(10px);
         }
         
         .hero h1 {
-            font-size: 48px;
+            font-size: 56px;
             font-weight: 800;
-            margin-bottom: 16px;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+        
+        .hero h1 .gradient-text {
             background: linear-gradient(135deg, #8b5cf6, #06b6d4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
+        .hero h1 .accent-text {
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
         .hero .subtitle {
-            font-size: 18px;
+            font-size: 20px;
             color: var(--text-secondary);
+            margin-bottom: 40px;
             max-width: 600px;
-            margin: 0 auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-cta-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cta-primary {
+            background: linear-gradient(135deg, var(--accent), #fbbf24);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.5);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 50px rgba(245, 158, 11, 0.7);
+        }
+        
+        .cta-secondary {
+            background: var(--glass);
+            color: var(--text-primary);
+            padding: 16px 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        
+        .cta-secondary:hover {
+            border-color: var(--primary);
+            background: rgba(139, 92, 246, 0.1);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+        }
+        
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+        
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        .hero-feature::before {
+            content: '✓';
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, var(--success), #34d399);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
         }
         
         /* 主要内容区 */
         .main-content {
             max-width: 1280px;
             margin: 0 auto;
-            padding: 0 24px 80px;
+            padding: 0 24px;
             position: relative;
             z-index: 1;
         }
         
-        /* 章节标题 */
         .section {
-            margin-bottom: 80px;
+            margin-bottom: 120px;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-tag {
+            display: inline-block;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: var(--primary-glow);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            backdrop-filter: blur(10px);
         }
         
         .section-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 40px;
+            font-size: 42px;
+            font-weight: 800;
             color: var(--text-primary);
+            margin-bottom: 16px;
         }
         
-        .section-title .icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
+        .section-desc {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
         }
         
-        /* 组织架构图 - 树形结构 */
-        .org-chart {
+        /* 痛点对比 */
+        .compare-section {
+            background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(6,182,212,0.1));
+            border-radius: 32px;
+            padding: 60px;
+            margin-bottom: 120px;
+        }
+        
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .compare-card {
             background: var(--glass);
             border: 1px solid var(--glass-border);
             border-radius: 24px;
-            padding: 48px;
+            padding: 40px;
             backdrop-filter: blur(10px);
-            overflow-x: auto;
         }
         
-        .org-tree {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-width: 700px;
+        .compare-card.negative {
+            border-color: rgba(239, 68, 68, 0.3);
         }
         
-        .org-node {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            padding: 16px 32px;
-            border-radius: 16px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);
+        .compare-card.positive {
+            border-color: rgba(16, 185, 129, 0.3);
+            background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(6,182,212,0.1));
         }
         
-        .org-node h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-        
-        .org-node p {
-            font-size: 13px;
-            opacity: 0.9;
-        }
-        
-        .org-node.secondary {
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-        }
-        
-        .org-node.tertiary {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            box-shadow: none;
-        }
-        
-        .org-branches {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 40px;
-            position: relative;
-        }
-        
-        .org-branches::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 20px;
-            background: var(--glass-border);
-        }
-        
-        .org-branch {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-        
-        .org-branch::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 20px;
-            background: var(--glass-border);
-        }
-        
-        .org-branch-line {
-            position: absolute;
-            top: -20px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--glass-border);
-        }
-        
-        .org-sub-branches {
-            display: flex;
-            gap: 16px;
-            margin-top: 24px;
-        }
-        
-        .org-sub-node {
-            background: var(--dark-tertiary);
-            border: 1px solid var(--glass-border);
-            padding: 12px 20px;
-            border-radius: 10px;
-            font-size: 13px;
-            text-align: center;
-            min-width: 100px;
-        }
-        
-        /* 核心职责表格 */
-        .roles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-        }
-        
-        .role-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 32px;
-            transition: all 0.3s;
-        }
-        
-        .role-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
-        }
-        
-        .role-header {
+        .compare-header {
             display: flex;
             align-items: center;
             gap: 16px;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
         
-        .role-icon {
+        .compare-icon {
             width: 56px;
             height: 56px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: 16px;
             display: flex;
             align-items: center;
@@ -373,422 +407,640 @@
             font-size: 28px;
         }
         
-        .role-title {
-            font-size: 20px;
+        .compare-card.negative .compare-icon {
+            background: rgba(239, 68, 68, 0.2);
+        }
+        
+        .compare-card.positive .compare-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+        }
+        
+        .compare-title {
+            font-size: 24px;
             font-weight: 700;
         }
         
-        .role-percentage {
-            font-size: 14px;
-            color: var(--accent);
-            font-weight: 600;
+        .compare-card.negative .compare-title {
+            color: #ef4444;
         }
         
-        .role-duties {
+        .compare-card.positive .compare-title {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .compare-list {
             list-style: none;
         }
         
-        .role-duties li {
-            padding: 10px 0;
+        .compare-list li {
+            padding: 14px 0;
             border-bottom: 1px solid var(--glass-border);
             display: flex;
-            align-items: center;
-            gap: 10px;
+            align-items: flex-start;
+            gap: 12px;
             font-size: 15px;
             color: var(--text-secondary);
         }
         
-        .role-duties li:last-child {
+        .compare-list li:last-child {
             border-bottom: none;
         }
         
-        .role-duties li::before {
+        .compare-list li::before {
+            content: '✕';
+            color: #ef4444;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .compare-card.positive .compare-list li::before {
+            content: '✓';
+            color: var(--success);
+        }
+        
+        /* 服务模块 */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        
+        .service-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px 32px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2);
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-icon {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            margin-bottom: 24px;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+        }
+        
+        .service-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        
+        .service-features {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .service-feature-tag {
+            background: rgba(139, 92, 246, 0.15);
+            color: var(--primary-glow);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        /* 套餐对比 */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        
+        .pricing-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px 32px;
+            transition: all 0.3s;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+        
+        .pricing-card.popular {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(139,92,246,0.1));
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.popular::before {
+            content: '最受欢迎';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--accent), #fbbf24);
+            color: white;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2);
+        }
+        
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+        
+        .pricing-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .pricing-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+        
+        .pricing-price {
+            margin-bottom: 32px;
+        }
+        
+        .pricing-price .currency {
+            font-size: 24px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .pricing-price .amount {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .pricing-price .period {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+        
+        .pricing-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .pricing-features li.included::before {
             content: '✓';
             color: var(--success);
             font-weight: bold;
         }
         
-        /* 扩张路线时间轴 */
-        .timeline {
-            position: relative;
-            padding-left: 40px;
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 15px;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(180deg, var(--primary), var(--secondary), var(--accent));
-            border-radius: 3px;
-        }
-        
-        .timeline-item {
-            position: relative;
-            margin-bottom: 40px;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 32px;
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -33px;
-            top: 32px;
-            width: 16px;
-            height: 16px;
-            background: var(--primary);
-            border-radius: 50%;
-            border: 3px solid var(--dark);
-            box-shadow: 0 0 20px var(--primary);
-        }
-        
-        .timeline-item:nth-child(2)::before {
-            background: var(--secondary);
-            box-shadow: 0 0 20px var(--secondary);
-        }
-        
-        .timeline-item:nth-child(3)::before {
-            background: var(--accent);
-            box-shadow: 0 0 20px var(--accent);
-        }
-        
-        .timeline-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-        
-        .timeline-phase {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-        }
-        
-        .timeline-time {
-            color: var(--text-muted);
-            font-size: 14px;
-        }
-        
-        .timeline-content h3 {
-            font-size: 22px;
-            margin-bottom: 12px;
-        }
-        
-        .timeline-team {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 16px;
-            color: var(--text-secondary);
-            font-size: 14px;
-        }
-        
-        .timeline-goals {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-        }
-        
-        .goal-item {
-            background: var(--dark-tertiary);
-            padding: 12px 16px;
-            border-radius: 10px;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .goal-item::before {
-            content: '🎯';
-        }
-        
-        /* 财务图表区 */
-        .finance-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
-        }
-        
-        @media (max-width: 900px) {
-            .finance-section {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .finance-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 32px;
-        }
-        
-        .finance-card h3 {
-            font-size: 20px;
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        /* 启动资金饼图 */
-        .pie-chart {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 24px;
-            position: relative;
-        }
-        
-        .pie-chart svg {
-            transform: rotate(-90deg);
-        }
-        
-        .pie-center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-        
-        .pie-center .amount {
-            font-size: 24px;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .pie-center .label {
-            font-size: 12px;
+        .pricing-features li.not-included::before {
+            content: '—';
             color: var(--text-muted);
         }
         
-        /* 条形图 */
-        .bar-chart {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-        
-        .bar-item {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-        
-        .bar-header {
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-        }
-        
-        .bar-label {
-            color: var(--text-secondary);
-        }
-        
-        .bar-value {
-            font-weight: 600;
-            color: var(--accent);
-        }
-        
-        .bar-track {
-            height: 12px;
-            background: var(--dark-tertiary);
-            border-radius: 6px;
-            overflow: hidden;
-        }
-        
-        .bar-fill {
-            height: 100%;
-            border-radius: 6px;
-            transition: width 1s ease;
-        }
-        
-        .bar-fill.purple {
-            background: linear-gradient(90deg, var(--primary), var(--primary-glow));
-        }
-        
-        .bar-fill.cyan {
-            background: linear-gradient(90deg, var(--secondary), #22d3ee);
-        }
-        
-        .bar-fill.amber {
-            background: linear-gradient(90deg, var(--accent), #fbbf24);
-        }
-        
-        .bar-fill.green {
-            background: linear-gradient(90deg, var(--success), #34d399);
-        }
-        
-        /* 收入构成列表 */
-        .income-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        
-        .income-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px;
-            background: var(--dark-tertiary);
-            border-radius: 12px;
-            border-left: 4px solid var(--primary);
-        }
-        
-        .income-item:nth-child(2) { border-left-color: var(--secondary); }
-        .income-item:nth-child(3) { border-left-color: var(--accent); }
-        .income-item:nth-child(4) { border-left-color: var(--success); }
-        .income-item:nth-child(5) { border-left-color: #ec4899; }
-        
-        .income-name {
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-        
-        .income-detail {
-            font-size: 12px;
+        .pricing-features li.not-included {
             color: var(--text-muted);
-            margin-top: 2px;
         }
         
-        .income-amount {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-        
-        .income-total {
-            margin-top: 16px;
-            padding: 20px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .income-total-label {
-            font-size: 16px;
-            font-weight: 600;
-        }
-        
-        .income-total-amount {
-            font-size: 28px;
-            font-weight: 800;
-        }
-        
-        /* 政策补贴表格 */
-        .policy-table {
+        .pricing-btn {
+            display: block;
             width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .policy-table th,
-        .policy-table td {
-            padding: 16px;
-            text-align: left;
-            border-bottom: 1px solid var(--glass-border);
-        }
-        
-        .policy-table th {
-            background: var(--dark-tertiary);
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-        
-        .policy-table td {
-            font-size: 14px;
-        }
-        
-        .policy-table tr:hover td {
-            background: var(--glass);
-        }
-        
-        .policy-amount {
-            color: var(--accent);
-            font-weight: 700;
-        }
-        
-        .policy-status {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-        
-        .policy-status.available {
-            background: rgba(16, 185, 129, 0.2);
-            color: var(--success);
-        }
-        
-        /* 总结卡片 */
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 24px;
-        }
-        
-        .summary-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 28px;
+            padding: 14px;
+            border-radius: 12px;
             text-align: center;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
             transition: all 0.3s;
+            border: none;
+            cursor: pointer;
         }
         
-        .summary-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--primary);
+        .pricing-card.popular .pricing-btn {
+            background: linear-gradient(135deg, var(--accent), #fbbf24);
+            color: white;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
         }
         
-        .summary-icon {
-            width: 64px;
-            height: 64px;
+        .pricing-card:not(.popular) .pricing-btn {
+            background: var(--glass);
+            color: var(--text-primary);
+            border: 1px solid var(--glass-border);
+        }
+        
+        .pricing-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+        
+        /* 流程 */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            position: relative;
+        }
+        
+        .process-grid::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 12.5%;
+            right: 12.5%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            z-index: 0;
+        }
+        
+        .process-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .process-number {
+            width: 80px;
+            height: 80px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 20px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 32px;
-            margin: 0 auto 16px;
+            font-weight: 800;
+            color: white;
+            margin: 0 auto 24px;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+            position: relative;
         }
         
-        .summary-number {
-            font-size: 36px;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .process-step:nth-child(2) .process-number {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.5);
+        }
+        
+        .process-step:nth-child(3) .process-number {
+            background: linear-gradient(135deg, var(--accent), #fbbf24);
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.5);
+        }
+        
+        .process-step:nth-child(4) .process-number {
+            background: linear-gradient(135deg, var(--success), #34d399);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.5);
+        }
+        
+        .process-title {
+            font-size: 20px;
+            font-weight: 700;
             margin-bottom: 8px;
         }
         
-        .summary-label {
+        .process-desc {
             font-size: 14px;
             color: var(--text-secondary);
         }
         
+        /* 成功案例 */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        
+        .case-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        
+        .case-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+        }
+        
+        .case-quote {
+            font-size: 48px;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+        
+        .case-content {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+        
+        .case-author {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .case-avatar {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .case-info h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .case-info p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        
+        .case-result {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--glass-border);
+            display: flex;
+            gap: 24px;
+        }
+        
+        .case-result-item {
+            text-align: center;
+        }
+        
+        .case-result-item .number {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+        
+        .case-result-item .label {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        
+        /* FAQ */
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .faq-question {
+            padding: 24px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .faq-question:hover {
+            background: rgba(139, 92, 246, 0.05);
+        }
+        
+        .faq-question h3 {
+            font-size: 16px;
+            font-weight: 600;
+            padding-right: 20px;
+        }
+        
+        .faq-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+            color: var(--primary);
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+        
+        .faq-answer-content {
+            padding: 0 32px 24px;
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        
+        /* 预约表单 */
+        .contact-section {
+            background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(6,182,212,0.15));
+            border-radius: 32px;
+            padding: 80px 60px;
+            margin-bottom: 120px;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .contact-info h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.3;
+        }
+        
+        .contact-info p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+        
+        .contact-benefits {
+            list-style: none;
+        }
+        
+        .contact-benefits li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+        
+        .contact-benefits li::before {
+            content: '✓';
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, var(--success), #34d399);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .contact-form {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 15px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--accent), #fbbf24);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.6);
+        }
+        
         /* 页脚 */
         footer {
-            background: var(--dark);
+            background: rgba(15, 12, 41, 0.9);
             border-top: 1px solid var(--glass-border);
-            padding: 40px 24px;
-            text-align: center;
+            padding: 60px 24px 40px;
             position: relative;
             z-index: 1;
         }
@@ -796,8 +1048,7 @@
         .footer-content {
             max-width: 1280px;
             margin: 0 auto;
-            color: var(--text-muted);
-            font-size: 14px;
+            text-align: center;
         }
         
         .footer-brand {
@@ -805,12 +1056,123 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-            margin-bottom: 16px;
-            font-size: 20px;
-            font-weight: 700;
+            font-size: 24px;
+            font-weight: 800;
             background: linear-gradient(135deg, #8b5cf6, #06b6d4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .footer-brand-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+        }
+        
+        .footer-brand-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .footer-desc {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+        
+        .footer-bottom {
+            color: var(--text-muted);
+            font-size: 13px;
+            padding-top: 24px;
+            border-top: 1px solid var(--glass-border);
+        }
+        
+        /* 响应式 */
+        @media (max-width: 1024px) {
+            .compare-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid,
+            .pricing-grid,
+            .cases-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px 24px;
+            }
+            
+            .process-grid::before {
+                display: none;
+            }
+            
+            .pricing-card.popular {
+                transform: none;
+            }
+            
+            .pricing-card.popular:hover {
+                transform: translateY(-8px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 140px 24px 80px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .services-grid,
+            .pricing-grid,
+            .cases-grid,
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .compare-section,
+            .contact-section {
+                padding: 40px 24px;
+            }
+            
+            .hero-features {
+                flex-direction: column;
+                gap: 16px;
+            }
         }
         
         /* 动画 */
@@ -825,35 +1187,15 @@
             }
         }
         
-        .section {
-            animation: fadeInUp 0.6s ease-out;
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
         
-        /* 响应式 */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 32px;
-            }
-            
-            .org-chart {
-                padding: 24px;
-            }
-            
-            .timeline {
-                padding-left: 30px;
-            }
-            
-            .timeline-item::before {
-                left: -23px;
-            }
-            
-            .section-title {
-                font-size: 22px;
-            }
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -869,413 +1211,439 @@
             </a>
             <div class="nav-links">
                 <a href="/">首页</a>
-                <a href="/company/" class="active">公司架构</a>
+                <a href="/company/" class="active">拎包入住</a>
                 <a href="/updates.html">更新日志</a>
                 <a href="/mlx/">MLX工作台</a>
             </div>
-            <a href="#contact" class="nav-cta">联系我们</a>
+            <a href="#contact" class="nav-cta">立即预约</a>
         </div>
     </nav>
 
     <!-- Hero区域 -->
     <section class="hero">
-        <div class="hero-badge">🦞 WodeClaw Digital Workforce</div>
-        <h1>一人公司组织架构</h1>
-        <p class="subtitle">沃智云动 · 轻资产启动 · AI驱动的智能体平台公司战略规划</p>
+        <div class="hero-content">
+            <div class="hero-badge">🚀 一人公司首选 · 拎包入住</div>
+            <h1>
+                <span class="gradient-text">一人公司</span> · <span class="accent-text">拎包入住</span>
+            </h1>
+            <p class="subtitle">让创始人只专注产品+市场，公司注册/法务/财务/税务/银行/社保等所有杂事我们全包</p>
+            <div class="hero-cta-group">
+                <a href="#pricing" class="cta-primary">查看服务套餐 →</a>
+                <a href="#contact" class="cta-secondary">免费咨询</a>
+            </div>
+            <div class="hero-features">
+                <div class="hero-feature">3天快速注册</div>
+                <div class="hero-feature">零隐形费用</div>
+                <div class="hero-feature">专业顾问1v1</div>
+                <div class="hero-feature">全程线上办理</div>
+            </div>
+        </div>
     </section>
 
     <!-- 主要内容 -->
     <main class="main-content">
         
-        <!-- 组织架构图 -->
+        <!-- 痛点对比 -->
         <section class="section">
-            <h2 class="section-title">
-                <span class="icon">🏗️</span>
-                公司组织架构
-            </h2>
-            <div class="org-chart">
-                <div class="org-tree">
-                    <div class="org-node">
-                        <h3>创始人/CEO</h3>
-                        <p>产品 + 技术</p>
+            <div class="section-header">
+                <div class="section-tag">为什么选择我们</div>
+                <h2 class="section-title">传统创业 vs WodeClaw拎包入住</h2>
+                <p class="section-desc">告别繁琐的行政事务，让创业回归本质</p>
+            </div>
+            <div class="compare-section">
+                <div class="compare-grid">
+                    <div class="compare-card negative">
+                        <div class="compare-header">
+                            <div class="compare-icon">😫</div>
+                            <h3 class="compare-title">传统创业</h3>
+                        </div>
+                        <ul class="compare-list">
+                            <li>自己跑工商局，排队3-5天</li>
+                            <li>找代理记账，收费不透明</li>
+                            <li>税务申报复杂，怕出错被罚</li>
+                            <li>社保公积金政策搞不懂</li>
+                            <li>法务合同自己搜模板</li>
+                            <li>银行开户预约难、审核严</li>
+                        </ul>
                     </div>
-                    <div class="org-branches">
-                        <div class="org-branch">
-                            <div class="org-node secondary">
-                                <h3>产品部</h3>
-                                <p>兼任</p>
-                            </div>
-                            <div class="org-sub-branches">
-                                <div class="org-sub-node">需求分析</div>
-                                <div class="org-sub-node">竞品调研</div>
-                                <div class="org-sub-node">产品设计</div>
-                            </div>
+                    <div class="compare-card positive">
+                        <div class="compare-header">
+                            <div class="compare-icon">🎉</div>
+                            <h3 class="compare-title">WodeClaw拎包入住</h3>
                         </div>
-                        <div class="org-branch">
-                            <div class="org-node secondary">
-                                <h3>技术部</h3>
-                                <p>兼任</p>
-                            </div>
-                            <div class="org-sub-branches">
-                                <div class="org-sub-node">技能开发</div>
-                                <div class="org-sub-node">系统部署</div>
-                                <div class="org-sub-node">技术支持</div>
-                            </div>
+                        <ul class="compare-list">
+                            <li>全程代办，3天拿营业执照</li>
+                            <li>一口价全包，无隐形费用</li>
+                            <li>专业会计团队，合规申报</li>
+                            <li>社保公积金一站式托管</li>
+                            <li>专业法务审核，合同定制</li>
+                            <li>银行开户绿色通道</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 六大服务模块 -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-tag">核心服务</div>
+                <h2 class="section-title">6大模块，创业无忧</h2>
+                <p class="section-desc">从公司注册到日常运营，我们为您打理一切</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🏢</div>
+                    <h3>公司注册</h3>
+                    <p>核名、工商登记、营业执照、刻章一站式服务，3天快速下证</p>
+                    <div class="service-features">
+                        <span class="service-feature-tag">核名查询</span>
+                        <span class="service-feature-tag">工商登记</span>
+                        <span class="service-feature-tag">刻章备案</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚖️</div>
+                    <h3>法务合规</h3>
+                    <p>合同模板、知识产权、法律咨询、风险合规全方位保障</p>
+                    <div class="service-features">
+                        <span class="service-feature-tag">合同模板</span>
+                        <span class="service-feature-tag">知识产权</span>
+                        <span class="service-feature-tag">法律咨询</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>财务记账</h3>
+                    <p>月度记账、财务报表、凭证管理、成本优化专业托管</p>
+                    <div class="service-features">
+                        <span class="service-feature-tag">月度记账</span>
+                        <span class="service-feature-tag">财务报表</span>
+                        <span class="service-feature-tag">凭证管理</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📝</div>
+                    <h3>税务申报</h3>
+                    <p>个税、增值税、企业所得税、年度汇算合规申报</p>
+                    <div class="service-features">
+                        <span class="service-feature-tag">个税申报</span>
+                        <span class="service-feature-tag">增值税</span>
+                        <span class="service-feature-tag">年度汇算</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏦</div>
+                    <h3>银行开户</h3>
+                    <p>对公账户、银企直联、资金管理，银行开户绿色通道</p>
+                    <div class="service-features">
+                        <span class="service-feature-tag">对公账户</span>
+                        <span class="service-feature-tag">银企直联</span>
+                        <span class="service-feature-tag">资金管理</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💼</div>
+                    <h3>社保公积金</h3>
+                    <p>开户、缴纳、基数调整、政策解读一站式托管</p>
+                    <div class="service-features">
+                        <span class="service-feature-tag">社保开户</span>
+                        <span class="service-feature-tag">基数调整</span>
+                        <span class="service-feature-tag">政策解读</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 套餐对比 -->
+        <section class="section" id="pricing">
+            <div class="section-header">
+                <div class="section-tag">服务套餐</div>
+                <h2 class="section-title">选择适合您的方案</h2>
+                <p class="section-desc">透明定价，无隐形费用，按月付费灵活选择</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-name">基础版</div>
+                    <div class="pricing-desc">适合个人创业起步</div>
+                    <div class="pricing-price">
+                        <span class="currency">¥</span>
+                        <span class="amount">999</span>
+                        <span class="period">/月</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="included">公司注册（含营业执照+刻章）</li>
+                        <li class="included">月度财务记账</li>
+                        <li class="included">税务申报（个税+增值税）</li>
+                        <li class="included">专属顾问微信支持</li>
+                        <li class="not-included">法务咨询服务</li>
+                        <li class="not-included">银行开户代办</li>
+                        <li class="not-included">社保公积金托管</li>
+                    </ul>
+                    <button class="pricing-btn" onclick="selectPlan('基础版')">选择基础版</button>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="pricing-name">专业版</div>
+                    <div class="pricing-desc">适合成长期创业公司</div>
+                    <div class="pricing-price">
+                        <span class="currency">¥</span>
+                        <span class="amount">1999</span>
+                        <span class="period">/月</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="included">公司注册（含营业执照+刻章）</li>
+                        <li class="included">月度财务记账+财务报表</li>
+                        <li class="included">全税种申报服务</li>
+                        <li class="included">基础法务咨询（5次/月）</li>
+                        <li class="included">银行开户绿色通道</li>
+                        <li class="included">社保公积金托管</li>
+                        <li class="not-included">专属财税顾问</li>
+                    </ul>
+                    <button class="pricing-btn" onclick="selectPlan('专业版')">选择专业版</button>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-name">企业版</div>
+                    <div class="pricing-desc">适合高速发展的企业</div>
+                    <div class="pricing-price">
+                        <span class="currency">¥</span>
+                        <span class="amount">3999</span>
+                        <span class="period">/月</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="included">公司注册（含营业执照+刻章）</li>
+                        <li class="included">完整财务记账+成本优化</li>
+                        <li class="included">全税种申报+税务筹划</li>
+                        <li class="included">无限次法务咨询</li>
+                        <li class="included">银行开户+银企直联</li>
+                        <li class="included">社保公积金+人事服务</li>
+                        <li class="included">1v1专属财税顾问</li>
+                    </ul>
+                    <button class="pricing-btn" onclick="selectPlan('企业版')">选择企业版</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 四步流程 -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-tag">服务流程</div>
+                <h2 class="section-title">4步轻松开业</h2>
+                <p class="section-desc">简单透明，全程线上，让您省心省力</p>
+            </div>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="process-number">1</div>
+                    <h3 class="process-title">选择套餐</h3>
+                    <p class="process-desc">根据需求选择适合的服务方案</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">2</div>
+                    <h3 class="process-title">填写资料</h3>
+                    <p class="process-desc">在线提交所需材料，1对1指导</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">3</div>
+                    <h3 class="process-title">我们办理</h3>
+                    <p class="process-desc">专业团队全程代办，实时反馈进度</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">4</div>
+                    <h3 class="process-title">正式开业</h3>
+                    <p class="process-desc">领取证照，开启创业之旅</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 成功案例 -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-tag">客户故事</div>
+                <h2 class="section-title">他们选择了拎包入住</h2>
+                <p class="section-desc">听听创始人们怎么说</p>
+            </div>
+            <div class="cases-grid">
+                <div class="case-card">
+                    <div class="case-quote">"</div>
+                    <p class="case-content">作为技术出身的创始人，我完全不懂财务和税务。WodeClaw的拎包入住服务让我可以专注于产品开发，3天就拿到了营业执照，真的太省心了！</p>
+                    <div class="case-author">
+                        <div class="case-avatar">👨‍💻</div>
+                        <div class="case-info">
+                            <h4>张明</h4>
+                            <p>AI工具创业公司创始人</p>
                         </div>
-                        <div class="org-branch">
-                            <div class="org-node secondary">
-                                <h3>运营部</h3>
-                                <p>兼任</p>
-                            </div>
-                            <div class="org-sub-branches">
-                                <div class="org-sub-node">客户获取</div>
-                                <div class="org-sub-node">客户服务</div>
-                                <div class="org-sub-node">社区运营</div>
-                            </div>
+                    </div>
+                    <div class="case-result">
+                        <div class="case-result-item">
+                            <div class="number">3天</div>
+                            <div class="label">完成注册</div>
+                        </div>
+                        <div class="case-result-item">
+                            <div class="number">50%</div>
+                            <div class="label">时间节省</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-card">
+                    <div class="case-quote">"</div>
+                    <p class="case-content">之前找过几家代理记账，收费不透明还总是出问题。换了WodeClaw后，每月999元全包，会计专业响应快，终于不用为财务琐事头疼了。</p>
+                    <div class="case-author">
+                        <div class="case-avatar">👩‍🎨</div>
+                        <div class="case-info">
+                            <h4>李雪</h4>
+                            <p>设计工作室主理人</p>
+                        </div>
+                    </div>
+                    <div class="case-result">
+                        <div class="case-result-item">
+                            <div class="number">0次</div>
+                            <div class="label">税务差错</div>
+                        </div>
+                        <div class="case-result-item">
+                            <div class="number">30%</div>
+                            <div class="label">成本降低</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-card">
+                    <div class="case-quote">"</div>
+                    <p class="case-content">从注册到银行开户再到社保缴纳，WodeClaw一站式搞定。专属顾问随叫随到，感觉就像公司有了自己的行政团队，强烈推荐！</p>
+                    <div class="case-author">
+                        <div class="case-avatar">👨‍💼</div>
+                        <div class="case-info">
+                            <h4>王磊</h4>
+                            <p>跨境电商创业者</p>
+                        </div>
+                    </div>
+                    <div class="case-result">
+                        <div class="case-result-item">
+                            <div class="number">100%</div>
+                            <div class="label">合规运营</div>
+                        </div>
+                        <div class="case-result-item">
+                            <div class="number">24h</div>
+                            <div class="label">响应速度</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 核心岗位职责 -->
+        <!-- FAQ -->
         <section class="section">
-            <h2 class="section-title">
-                <span class="icon">👥</span>
-                核心岗位职责
-            </h2>
-            <div class="roles-grid">
-                <div class="role-card">
-                    <div class="role-header">
-                        <div class="role-icon">📋</div>
-                        <div>
-                            <div class="role-title">产品部</div>
-                            <div class="role-percentage">时间占比: 30%</div>
+            <div class="section-header">
+                <div class="section-tag">常见问题</div>
+                <h2 class="section-title">FAQ</h2>
+                <p class="section-desc">解答您的疑惑</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>公司注册需要准备哪些材料？</h3>
+                        <div class="faq-icon">▼</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            通常需要：法人身份证、股东身份证、公司名称（可协助核名）、注册资本、经营范围、注册地址证明。我们的顾问会根据您的具体情况提供详细清单，并全程指导准备。
                         </div>
                     </div>
-                    <ul class="role-duties">
-                        <li>需求分析</li>
-                        <li>竞品调研</li>
-                        <li>产品设计</li>
-                        <li>用户调研</li>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>没有注册地址怎么办？</h3>
+                        <div class="faq-icon">▼</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            我们提供合规的注册地址托管服务，包括集中办公区和园区地址，可用于工商注册和银行开户，费用已包含在套餐内或单独计费，具体请咨询顾问。
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>套餐费用包含所有费用吗？有隐形收费吗？</h3>
+                        <div class="faq-icon">▼</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            我们的套餐采用一口价模式，月费包含服务项目内明确列出的所有内容，无隐形费用。政府收取的工本费、印花税等法定费用需客户自行承担，我们会提前告知预估金额。
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>公司注册需要多长时间？</h3>
+                        <div class="faq-icon">▼</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            材料齐全后，通常3-5个工作日可领取营业执照，刻章1-2个工作日，银行开户5-7个工作日。整体流程约1-2周完成，我们会全程跟进并及时反馈进度。
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>可以随时取消或更换套餐吗？</h3>
+                        <div class="faq-icon">▼</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            可以。我们的服务按月付费，无长期合约，您可以随时调整或取消。如需升级套餐，可随时联系顾问；如需降级或取消，建议提前7个工作日告知以便交接。
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>如何保障我的信息安全？</h3>
+                        <div class="faq-icon">▼</div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            我们采用银行级别的数据加密技术，所有客户资料存储在安全服务器，仅授权人员可访问。同时签署保密协议，严格保护您的商业隐私和个人信息安全。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 预约表单 -->
+        <section class="contact-section" id="contact">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>准备好开启<br>您的一人公司之旅了吗？</h2>
+                    <p>填写表单，我们的专属顾问将在30分钟内与您联系，为您量身定制创业方案</p>
+                    <ul class="contact-benefits">
+                        <li>免费创业咨询，了解政策优惠</li>
+                        <li>个性化方案，匹配最佳套餐</li>
+                        <li>无强制消费，满意再签约</li>
+                        <li>7×12小时专属顾问支持</li>
                     </ul>
                 </div>
-                <div class="role-card">
-                    <div class="role-header">
-                        <div class="role-icon">💻</div>
-                        <div>
-                            <div class="role-title">技术部</div>
-                            <div class="role-percentage">时间占比: 40%</div>
+                <div class="contact-form">
+                    <form id="bookingForm" onsubmit="submitForm(event)">
+                        <div class="form-group">
+                            <label for="name">您的姓名 *</label>
+                            <input type="text" id="name" name="name" placeholder="请输入您的姓名" required>
                         </div>
-                    </div>
-                    <ul class="role-duties">
-                        <li>技能开发</li>
-                        <li>系统部署</li>
-                        <li>技术支持</li>
-                        <li>代码维护</li>
-                    </ul>
-                </div>
-                <div class="role-card">
-                    <div class="role-header">
-                        <div class="role-icon">🚀</div>
-                        <div>
-                            <div class="role-title">运营部</div>
-                            <div class="role-percentage">时间占比: 30%</div>
+                        <div class="form-group">
+                            <label for="phone">联系电话 *</label>
+                            <input type="tel" id="phone" name="phone" placeholder="请输入您的手机号" required>
                         </div>
-                    </div>
-                    <ul class="role-duties">
-                        <li>客户获取</li>
-                        <li>客户服务</li>
-                        <li>社区运营</li>
-                        <li>内容输出</li>
-                    </ul>
-                </div>
-            </div>
-            <div style="margin-top: 24px; padding: 20px; background: var(--glass); border-radius: 16px; text-align: center; color: var(--text-secondary);">
-                💡 <strong>说明</strong>：创始阶段由CEO一人兼任三部门职责，专注高效执行
-            </div>
-        </section>
-
-        <!-- 扩张路线图 -->
-        <section class="section">
-            <h2 class="section-title">
-                <span class="icon">📈</span>
-                扩张路线图（3个阶段）
-            </h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-header">
-                        <span class="timeline-phase">阶段一 · 验证期</span>
-                        <span class="timeline-time">0-6个月</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>验证产品与市场需求</h3>
-                        <div class="timeline-team">
-                            👤 人员配置：<strong>创始人1人</strong>
+                        <div class="form-group">
+                            <label for="plan">意向套餐</label>
+                            <select id="plan" name="plan">
+                                <option value="">请选择意向套餐</option>
+                                <option value="基础版">基础版（999元/月）</option>
+                                <option value="专业版">专业版（1999元/月）</option>
+                                <option value="企业版">企业版（3999元/月）</option>
+                                <option value="待定">还没想好，需要咨询</option>
+                            </select>
                         </div>
-                        <div class="timeline-goals">
-                            <div class="goal-item">上架3个技能包</div>
-                            <div class="goal-item">获得10个付费客户</div>
-                            <div class="goal-item">月收入破1万</div>
+                        <div class="form-group">
+                            <label for="message">留言（选填）</label>
+                            <textarea id="message" name="message" placeholder="请简单描述您的需求或问题，我们会提前准备"></textarea>
                         </div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-header">
-                        <span class="timeline-phase">阶段二 · 成长期</span>
-                        <span class="timeline-time">6-12个月</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>扩大规模与产品矩阵</h3>
-                        <div class="timeline-team">
-                            👥 人员配置：<strong>创始人 + 1名开发工程师</strong>（15-20K/月）
-                        </div>
-                        <div class="timeline-goals">
-                            <div class="goal-item">技能包矩阵形成</div>
-                            <div class="goal-item">客户数50+</div>
-                            <div class="goal-item">月收入稳定5万+</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-header">
-                        <span class="timeline-phase">阶段三 · 扩张期</span>
-                        <span class="timeline-time">12-24个月</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>规模化与品牌建设</h3>
-                        <div class="timeline-team">
-                            👥 人员配置：<strong>创始人 + 开发 + 产品经理 + 运营（共4人）</strong>
-                        </div>
-                        <div class="timeline-goals">
-                            <div class="goal-item">年营收破300万</div>
-                            <div class="goal-item">成为垂直领域知名品牌</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 启动资金与收入预期 -->
-        <section class="section">
-            <h2 class="section-title">
-                <span class="icon">💰</span>
-                启动资金与收入预期
-            </h2>
-            <div class="finance-section">
-                <!-- 启动资金 -->
-                <div class="finance-card">
-                    <h3>💵 启动资金需求：约3.4万</h3>
-                    <div class="bar-chart">
-                        <div class="bar-item">
-                            <div class="bar-header">
-                                <span class="bar-label">公司注册</span>
-                                <span class="bar-value">¥2,000</span>
-                            </div>
-                            <div class="bar-track">
-                                <div class="bar-fill purple" style="width: 6%"></div>
-                            </div>
-                        </div>
-                        <div class="bar-item">
-                            <div class="bar-header">
-                                <span class="bar-label">设备采购（MacBook Pro）</span>
-                                <span class="bar-value">¥10,000</span>
-                            </div>
-                            <div class="bar-track">
-                                <div class="bar-fill cyan" style="width: 30%"></div>
-                            </div>
-                        </div>
-                        <div class="bar-item">
-                            <div class="bar-header">
-                                <span class="bar-label">云服务器（年费）</span>
-                                <span class="bar-value">¥3,000</span>
-                            </div>
-                            <div class="bar-track">
-                                <div class="bar-fill amber" style="width: 9%"></div>
-                            </div>
-                        </div>
-                        <div class="bar-item">
-                            <div class="bar-header">
-                                <span class="bar-label">域名+备案+企业邮箱</span>
-                                <span class="bar-value">¥500</span>
-                            </div>
-                            <div class="bar-track">
-                                <div class="bar-fill green" style="width: 1.5%"></div>
-                            </div>
-                        </div>
-                        <div class="bar-item">
-                            <div class="bar-header">
-                                <span class="bar-label">工具订阅（GitHub Pro等）</span>
-                                <span class="bar-value">¥3,000</span>
-                            </div>
-                            <div class="bar-track">
-                                <div class="bar-fill purple" style="width: 9%"></div>
-                            </div>
-                        </div>
-                        <div class="bar-item">
-                            <div class="bar-header">
-                                <span class="bar-label">市场推广</span>
-                                <span class="bar-value">¥5,000</span>
-                            </div>
-                            <div class="bar-track">
-                                <div class="bar-fill cyan" style="width: 15%"></div>
-                            </div>
-                        </div>
-                        <div class="bar-item">
-                            <div class="bar-header">
-                                <span class="bar-label">备用金</span>
-                                <span class="bar-value">¥10,000</span>
-                            </div>
-                            <div class="bar-track">
-                                <div class="bar-fill amber" style="width: 30%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="margin-top: 24px; padding: 16px; background: var(--dark-tertiary); border-radius: 12px; text-align: center;">
-                        <div style="font-size: 28px; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">¥33,500</div>
-                        <div style="font-size: 14px; color: var(--text-muted);">启动资金总计（约3.4万元）</div>
-                    </div>
-                    <div style="margin-top: 12px; font-size: 13px; color: var(--text-muted); text-align: center;">
-                        📌 前6个月月度运营成本约10,200元（含生活成本8,000元）
-                    </div>
-                </div>
-
-                <!-- 第一年预期收入 -->
-                <div class="finance-card">
-                    <h3>📊 第一年预期收入：100万</h3>
-                    <div class="income-list">
-                        <div class="income-item">
-                            <div>
-                                <div class="income-name">技能包销售</div>
-                                <div class="income-detail">100个 × ¥3,000</div>
-                            </div>
-                            <div class="income-amount">¥30万</div>
-                        </div>
-                        <div class="income-item">
-                            <div>
-                                <div class="income-name">订阅续费</div>
-                                <div class="income-detail">50个 × ¥2,000</div>
-                            </div>
-                            <div class="income-amount">¥10万</div>
-                        </div>
-                        <div class="income-item">
-                            <div>
-                                <div class="income-name">定制项目</div>
-                                <div class="income-detail">2个 × ¥5万元</div>
-                            </div>
-                            <div class="income-amount">¥10万</div>
-                        </div>
-                        <div class="income-item">
-                            <div>
-                                <div class="income-name">培训咨询</div>
-                                <div class="income-detail">20场 × ¥5,000</div>
-                            </div>
-                            <div class="income-amount">¥10万</div>
-                        </div>
-                        <div class="income-item">
-                            <div>
-                                <div class="income-name">政策补贴</div>
-                                <div class="income-detail">各类开发/采购/人才补贴</div>
-                            </div>
-                            <div class="income-amount">¥40万</div>
-                        </div>
-                    </div>
-                    <div class="income-total">
-                        <span class="income-total-label">第一年目标总收入</span>
-                        <span class="income-total-amount">¥100万</span>
-                    </div>
-                    <div style="margin-top: 16px; padding: 12px; background: rgba(139, 92, 246, 0.1); border-radius: 8px; font-size: 13px; color: var(--text-secondary);">
-                        📈 关键指标：客单价¥3,000，LTV ¥7,000，CAC ¥1,000，<strong>LTV/CAC = 7:1</strong>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 政策补贴 -->
-        <section class="section">
-            <h2 class="section-title">
-                <span class="icon">🎁</span>
-                政策补贴机会：60-100万
-            </h2>
-            <div class="finance-card">
-                <table class="policy-table">
-                    <thead>
-                        <tr>
-                            <th>政策项目</th>
-                            <th>申请时间</th>
-                            <th>预期金额</th>
-                            <th>备注</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>开发支持补贴</strong></td>
-                            <td>技能包上线后</td>
-                            <td class="policy-amount">30-50万</td>
-                            <td>提交技能包开发计划、代码仓库</td>
-                        </tr>
-                        <tr>
-                            <td><strong>智能体采购补贴</strong></td>
-                            <td>每季度申请</td>
-                            <td class="policy-amount">20-40万/年</td>
-                            <td>自用+推荐客户使用</td>
-                        </tr>
-                        <tr>
-                            <td><strong>办公空间补贴</strong></td>
-                            <td>注册龙岗后1月内</td>
-                            <td class="policy-amount">2个月免费+18个月优惠</td>
-                            <td>享受"龙虾十条"政策</td>
-                        </tr>
-                        <tr>
-                            <td><strong>人才补贴</strong></td>
-                            <td>招第1名员工时</td>
-                            <td class="policy-amount">最高10万</td>
-                            <td>劳动合同、社保记录</td>
-                        </tr>
-                        <tr style="background: linear-gradient(90deg, rgba(139,92,246,0.1), rgba(6,182,212,0.1));">
-                            <td><strong>第一年合计</strong></td>
-                            <td>-</td>
-                            <td class="policy-amount" style="font-size: 18px;">60-100万</td>
-                            <td>可用于研发和团队扩张</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- 核心亮点总结 -->
-        <section class="section">
-            <h2 class="section-title">
-                <span class="icon">✨</span>
-                核心亮点
-            </h2>
-            <div class="summary-grid">
-                <div class="summary-card">
-                    <div class="summary-icon">🚀</div>
-                    <div class="summary-number">3.4万</div>
-                    <div class="summary-label">轻资产启动资金</div>
-                </div>
-                <div class="summary-card">
-                    <div class="summary-icon">🎁</div>
-                    <div class="summary-number">100万</div>
-                    <div class="summary-label">第一年可申请补贴</div>
-                </div>
-                <div class="summary-card">
-                    <div class="summary-icon">💰</div>
-                    <div class="summary-number">100万</div>
-                    <div class="summary-label">第一年目标收入</div>
-                </div>
-                <div class="summary-card">
-                    <div class="summary-icon">📊</div>
-                    <div class="summary-number">7:1</div>
-                    <div class="summary-label">LTV/CAC 商业模式健康</div>
-                </div>
-            </div>
-            <div style="margin-top: 40px; text-align: center; padding: 32px; background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(6,182,212,0.2)); border-radius: 20px; border: 1px solid var(--glass-border);">
-                <h3 style="font-size: 22px; margin-bottom: 12px;">🎯 行动建议</h3>
-                <p style="font-size: 16px; color: var(--text-secondary);">本周启动公司注册，3月完成第一个技能包MVP</p>
-                <div style="margin-top: 24px;">
-                    <a href="/" class="nav-cta" style="display: inline-block;">返回首页</a>
+                        <button type="submit" class="submit-btn">预约免费咨询</button>
+                    </form>
                 </div>
             </div>
         </section>
@@ -1286,49 +1654,92 @@
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
-                <div class="logo-icon" style="width: 32px; height: 32px;">
+                <div class="footer-brand-icon">
                     <img src="/logo-lobster.jpg" alt="WodeClaw">
                 </div>
-                WodeClaw Digital Workforce
+                WodeClaw 拎包入住
             </div>
-            <p>© 2026 WodeClaw. 一人公司 · AI驱动 · 数字未来</p>
-            <p style="margin-top: 8px;">🐟🦞 报告整理：小鱼 | 数据来源：一人公司商业计划书 & 战略规划</p>
+            <p class="footer-desc">一人公司 · 拎包入住 · 专注产品与增长</p>
+            <div class="footer-links">
+                <a href="/">首页</a>
+                <a href="/company/">拎包入住</a>
+                <a href="/updates.html">更新日志</a>
+                <a href="/mlx/">MLX工作台</a>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 WodeClaw. 一人公司 · 拎包入住 · 数字未来</p>
+            </div>
         </div>
     </footer>
 
     <script>
-        // 条形图动画
-        document.addEventListener('DOMContentLoaded', function() {
-            const bars = document.querySelectorAll('.bar-fill');
-            bars.forEach((bar, index) => {
-                const width = bar.style.width;
-                bar.style.width = '0';
-                setTimeout(() => {
-                    bar.style.width = width;
-                }, 200 + index * 100);
+        // FAQ折叠展开
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // 关闭所有FAQ
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
             });
-        });
-
+            
+            // 如果点击的不是已展开的，则展开
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+        
+        // 选择套餐
+        function selectPlan(planName) {
+            document.getElementById('plan').value = planName;
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // 表单提交
+        function submitForm(event) {
+            event.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                plan: document.getElementById('plan').value,
+                message: document.getElementById('message').value
+            };
+            
+            // 这里可以添加实际的提交逻辑
+            alert('感谢您的预约！我们的顾问将在30分钟内与您联系。\n\n姓名：' + formData.name + '\n电话：' + formData.phone);
+            
+            // 重置表单
+            document.getElementById('bookingForm').reset();
+        }
+        
         // 滚动动画
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
-
+        
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('animated');
                 }
             });
         }, observerOptions);
-
+        
         document.querySelectorAll('.section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            section.classList.add('animate-on-scroll');
             observer.observe(section);
+        });
+        
+        // 导航栏滚动效果
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(15, 12, 41, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(15, 12, 41, 0.8)';
+            }
         });
     </script>
 </body>
